@@ -14,14 +14,24 @@ export default defineNuxtConfig({
   app: {
     head: {
       title: 'Portfolio v2',
-      link: [{ rel: 'icon', href: './assets/img/logo.png' }],
+      link: [
+        { rel: 'icon', href: './assets/img/logo.png' },
+        { rel: 'canonical', href: 'https://www.papadev.hu' } // Canonical link
+      ],
       script: [
         {
           src: "https://kit.fontawesome.com/7b26586b2f.js",
           defer: true,
           crossorigin: "anonymous"
         }
-      ]
+      ],
+      meta: [
+        { hid: 'description', name: 'description', content: 'Pap András Fullstack fejlesztő' },
+        { hid: 'robots', name: 'robots', content: 'index, follow' },  // Engedélyezett indexelés
+        { hid: 'og:title', property: 'og:title', content: 'Pap András portfolio' }, // Open Graph
+        { hid: 'og:description', property: 'og:description', content: 'Pap András Fullstack fejlesztő' }, // Open Graph
+        { hid: 'og:url', property: 'og:url', content: 'https://www.papadev.hu' }, // Open Graph
+      ],
     }
   }
 
