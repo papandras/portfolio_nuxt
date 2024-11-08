@@ -1,0 +1,25 @@
+{
+  "name": "nuxt-app",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "dependencies": {
+    "aos": "^2.3.4",
+    "emailjs-com": "^3.2.0",
+    "js-cookie": "^3.0.1",
+    "nuxt": "^3.14.159",
+    "@pinia/nuxt": "^0.7.0",
+    "vue": "latest",
+    "vue-cookie-accept-decline": "^6.1.0",
+    "vue-router": "latest"
+  },
+  "overrides": {
+    "vue": "latest"
+  }
+}

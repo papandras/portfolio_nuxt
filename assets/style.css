@@ -1,0 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta&family=Yeseva+One&display=swap');
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --backgroundColor: #EEE6CE;
+        --navColor: #214083;
+    }
+}
+
+@media (prefers-color-scheme: light) {
+    :root {
+        --backgroundColor: #EEE6CE;
+        --navColor: #ad2446;
+    }
+}
+
+html {
+    scroll-behavior: smooth;
+    /* overflow-x: hidden; */
+}
+
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    user-select: none;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    background-color: var(--backgroundColor);
+    font-family: 'Mukta', sans-serif;
+}
+
+
+#app {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    flex-basis: 100%;
+}
+
+.section-header,
+#menu-item-name {
+    font-family: 'Yeseva One', cursive;
+}
+
+header {
+    position: sticky;
+    width: 100%;
+    top: 0px;
+    background-color: var(--navColor);
+    display: flex;
+    align-items: center;
+    z-index: 999;
+    padding-block: 10px;
+}
+
+header *,
+footer * {
+    color: var(--backgroundColor);
+}
+
+footer {
+    background-color: var(--navColor);
+    text-align: center;
+    /* position: sticky;
+    bottom: 0px; */
+    width: 100%;
+    padding-top: 20px;
+}
+
+footer a,
+.section-header {
+    font-size: 200% !important;
+}
+
+#contactform label,
+header {
+    font-size: 150%;
+}
+
+header:hover {
+    opacity: 1;
+    transition: opacity 1s;
+}
+
+.menu {
+    width: 100%;
+    list-style-type: none;
+    display: flex !important;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    background-color: var(--navColor);
+}
+
+.menu-item {
+    margin: 0 20px;
+}
+
+.active-menu-item {
+    text-decoration: underline;
+    font-size: 1.1em;
+    transition: font-size 300ms ease-in-out;
+}
+
+.section {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: var(--navColor);
+    padding: 10px 5px;
+}
+
+.section:nth-child(2n) {
+    background-color: var(--navColor);
+    color: var(--backgroundColor);
+}
+
+.section-header {
+    position: absolute;
+    right: 10px;
+    margin: 10px 0;
+    color: var(--navColor);
+    font-size: 150%;
+}
+
+#hamburger {
+    display: none;
+    border: 1px solid var(--backgroundColor);
+    border-radius: 5px;
+}
+
+.menu-icon {
+    width: 40px;
+    height: 40px;
+    display: none;
+}
+
+.section:nth-child(2n) .section-header {
+    color: var(--backgroundColor);
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--backgroundColor);
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--hover);
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--navColor);
+}
+
+@media only screen and (max-width: 1200px) {
+    .section {
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .section-header {
+        position: initial;
+        align-self: center;
+        text-align: center;
+    }
+
+    .study-item {
+        flex-direction: column;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+
+    .menu-icon {
+        display: block;
+    }
+
+    .menu {
+        display: flex;
+        padding-inline: 10px;
+    }
+
+    .menu-visible {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+    }
+
+    .menu:has(> .menu-visible) {
+        height: 100lvh;
+        position: absolute;
+        top: 0px;
+        bottom: 0px;
+        padding-block: 10px;
+    }
+
+    .menu-hided {
+        display: none;
+    }
+
+    .menu-item {
+        margin: 0px;
+    }
+
+    li:nth-child(2) {
+        position: relative;
+    }
+
+    #hamburger {
+        display: block;
+        padding: 1px;
+        position: absolute;
+        right: 10px;
+    }
+
+    .section:hover .section-header {
+        color: var(--navColor);
+        transition: color 400ms ease-in-out;
+    }
+
+    .section:nth-child(2n):hover .section-header {
+        color: var(--backgroundColor);
+        transition: color 400ms ease-in-out;
+    }
+
+    .section-header {
+        /* position: initial; */
+        /* text-align: center; */
+    }
+}
