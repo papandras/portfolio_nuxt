@@ -13,9 +13,9 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: 'Portfolio v2',
+      title: 'Portfolio',
       link: [
-        { rel: 'icon', href: './assets/img/logo.png' },
+        { rel: 'icon', href: '~/assets/img/logo.png' },
         { rel: 'canonical', href: 'https://www.papadev.hu' } // Canonical link
       ],
       script: [
