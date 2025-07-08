@@ -1,11 +1,3 @@
-<script setup>
-import { useStore } from "@/stores/lang.js"
-
-const store = useStore()
-store.getLang()
-
-</script>
-
 <template>
     <div>
         <form id="contactform" @submit.prevent="sendEmail">
@@ -67,6 +59,7 @@ input[type=button] {
 
 <script>
 import emailjs from 'emailjs-com';
+import { useStore } from "~/stores/lang.js";
 
 export default {
     name: 'ContactUs',
@@ -74,7 +67,7 @@ export default {
         return {
             name: '',
             email: '',
-            //message: ''
+            store: useStore()
         }
     },
     methods: {

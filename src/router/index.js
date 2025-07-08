@@ -40,10 +40,6 @@ const router = createRouter({
 
 router.beforeEach((to, from, next) => {
   const store = useStore();
-  store.getLang();
-  // store.lang == "hu"
-  //   ? (// document.title = to.meta.title.hun)
-  //   : (// document.title = to.meta.title.eng);
 
   store.getIsAdmin();
 

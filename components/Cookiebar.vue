@@ -1,10 +1,3 @@
-<script setup>
-import { useStore } from "@/stores/lang.js"
-
-const store = useStore()
-store.getLang()
-</script>
-
 <template>
     <div>
         <vue-cookie-accept-decline :debug="false" :disableDecline="true" :showPostponeButton="false"
@@ -27,3 +20,15 @@ store.getLang()
         </vue-cookie-accept-decline>
     </div>
 </template>
+
+<script>
+import { useStore } from "~/stores/lang.js"
+
+export default {
+    data() {
+        return {
+            store: useStore()
+        }
+    }
+}
+</script>

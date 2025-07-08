@@ -1,10 +1,3 @@
-<script setup>
-import { useStore } from "@/stores/lang.js"
-
-const store = useStore()
-store.getLang()
-</script>
-
 <template>
     <div id="aboutme">
         <img src="@/assets/img/profilpic.jpg" :alt="'Me'.split('').reverse().join('')">
@@ -12,6 +5,18 @@ store.getLang()
         <p>{{ store.texts.introduction }}</p>
     </div>
 </template>
+
+<script>
+import { useStore } from "~/stores/lang.js"
+
+export default {
+    data() {
+        return {
+            store: useStore()
+        }
+    }
+}
+</script>
 
 <style scoped>
 #aboutme {

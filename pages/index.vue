@@ -35,9 +35,6 @@ export default {
         return {
             store: useStore()
         }
-    },
-    mounted() {
-        this.store.getLang()
     }
 }
 </script>

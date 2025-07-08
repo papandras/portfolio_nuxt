@@ -1,24 +1,29 @@
-<script setup>
-import { useStore } from "@/stores/lang.js"
-
-const store = useStore()
-store.getLang()
-</script>
-
 <template>
     <div id="timeline">
         <div class="study-item">
-            <img src="@/assets/img/school.svg" :alt="store.texts.experience.neumann" :title="store.texts.experience.neumann"
-                class="study-img">
+            <img src="@/assets/img/school.svg" :alt="store.texts.experience.neumann"
+                :title="store.texts.experience.neumann" class="study-img">
             <p class="study-detail">{{ store.texts.experience.neumann }}</p>
         </div>
         <div class="study-item">
-            <img src="@/assets/img/work.svg" :alt="store.texts.experience.company" :title="store.texts.experience.company"
-                class="study-img">
+            <img src="@/assets/img/work.svg" :alt="store.texts.experience.company"
+                :title="store.texts.experience.company" class="study-img">
             <p class="study-detail">{{ store.texts.experience.company }}</p>
         </div>
     </div>
 </template>
+
+<script>
+import { useStore } from "~/stores/lang.js"
+
+export default {
+    data() {
+        return {
+            store: useStore()
+        }
+    }
+}
+</script>
 
 <style scoped>
 #timeline {

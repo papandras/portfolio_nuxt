@@ -1,10 +1,3 @@
-<script setup>
-import { useStore } from "@/stores/lang.js"
-
-const store = useStore()
-store.getLang()
-</script>
-
 <template>
     <div id="skills">
         <div class="skill-item">
@@ -19,12 +12,13 @@ store.getLang()
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.css }}</p>
-            <img src="@/assets/img/css.png" :alt="store.texts.skills.css" :title="store.texts.skills.css" class="skill-img">
+            <img src="@/assets/img/css.png" :alt="store.texts.skills.css" :title="store.texts.skills.css"
+                class="skill-img">
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.bootstrap }}</p>
-            <img src="@/assets/img/bootstrap.png" :alt="store.texts.skills.bootstrap" :title="store.texts.skills.bootstrap"
-                class="skill-img">
+            <img src="@/assets/img/bootstrap.png" :alt="store.texts.skills.bootstrap"
+                :title="store.texts.skills.bootstrap" class="skill-img">
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.tailwind }}</p>
@@ -38,11 +32,13 @@ store.getLang()
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.vue }}</p>
-            <img src="@/assets/img/vue.png" :alt="store.texts.skills.vue" :title="store.texts.skills.vue" class="skill-img">
+            <img src="@/assets/img/vue.png" :alt="store.texts.skills.vue" :title="store.texts.skills.vue"
+                class="skill-img">
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.php }}</p>
-            <img src="@/assets/img/php.png" :alt="store.texts.skills.php" :title="store.texts.skills.php" class="skill-img">
+            <img src="@/assets/img/php.png" :alt="store.texts.skills.php" :title="store.texts.skills.php"
+                class="skill-img">
         </div>
         <div class="skill-item">
             <p class="skill-detail">{{ store.texts.skills.laravel }}</p>
@@ -118,7 +114,14 @@ store.getLang()
 </style>
 
 <script>
+import { useStore } from "~/stores/lang.js"
+
 export default {
+    data() {
+        return {
+            store: useStore()
+        }
+    },
     mounted() {
         if (window.innerWidth < 700) {
             for (let i = 0; i < document.getElementsByClassName("skill-item").length; i++) {
