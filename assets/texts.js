@@ -11,7 +11,7 @@ export default {
             "admin": "Admin"
         },
         "name": "Pap András",
-        "introduction": "Junior Full Stack Developer, aki tudása gyarapítását és hasznosítását tartja szem előtt.",
+        "introduction": "Junior Full Stack fejlesztő, aki tudása gyarapítását és hasznosítását tartja szem előtt.",
         "about": "Rólam",
         "experience": {
             "title": "Tapasztalat",
