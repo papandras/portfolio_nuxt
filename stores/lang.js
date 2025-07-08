@@ -35,11 +35,13 @@ export const useStore = defineStore("LangStore", {
       if (langCookie === 'hu' || !langCookie) {
         this.lang = 'en-GB';
         this.texts = textlibrary.eng;
+        Cookie.set("lang", "en-GB");
       }
 
       if (langCookie === 'en-GB') {
         this.lang = 'hu'
         this.texts = textlibrary.hun;
+        Cookie.set("lang", "hu");
       }
     },
   },
