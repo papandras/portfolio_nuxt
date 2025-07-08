@@ -1,8 +1,6 @@
 <template>
     <div>
         <vue-cookie-accept-decline :debug="false" :disableDecline="true" :showPostponeButton="false"
-            @clicked-accept="cookieClickedAccept" @clicked-decline="cookieClickedDecline"
-            @clicked-postpone="cookieClickedPostpone" @removed-cookie="cookieRemovedCookie" @status="cookieStatus"
             elementId="myPanel1" position="bottom" ref="myPanel1" transitionName="fade" type="bar">
             <!-- Optional -->
             <template #postponeContent>&times;</template>
