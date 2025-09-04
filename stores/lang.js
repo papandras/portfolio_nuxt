@@ -11,8 +11,8 @@ export const useStore = defineStore("LangStore", {
 
     const langCookie = Cookie.get("lang");
 
-    if (langCookie === 'hu' || !langCookie) {
-      lang = 'hu'
+    if (langCookie === 'hun' || !langCookie) {
+      lang = 'hun'
       texts = textlibrary.hun;
     }
 
@@ -32,16 +32,16 @@ export const useStore = defineStore("LangStore", {
     toggleLang() {
       const langCookie = Cookie.get("lang");
 
-      if (langCookie === 'hu' || !langCookie) {
+      if (langCookie === 'hun' || !langCookie) {
         this.lang = 'en-GB';
         this.texts = textlibrary.eng;
         Cookie.set("lang", "en-GB");
       }
 
       if (langCookie === 'en-GB') {
-        this.lang = 'hu'
+        this.lang = 'hun'
         this.texts = textlibrary.hun;
-        Cookie.set("lang", "hu");
+        Cookie.set("lang", "hun");
       }
     },
   },
