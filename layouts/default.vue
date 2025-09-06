@@ -56,27 +56,14 @@
 </template>
 
 <script>
-// import { RouterLink, RouterView } from 'vue-router'
-// import { useStore } from "~/stores/lang.js"
-
-
 export default {
     data() {
         const { locale, locales, setLocale } = useI18n()
 
-        // const showmenu = () => {
-        //     document.getElementById("hidable").classList.toggle("menu-hided")
-        //     document.getElementById("hidable").classList.toggle("menu-visible")
-        //     document.getElementsByTagName("main")[0].classList.toggle("menu-hided")
-        // }
-
         const currentYear = new Date().getFullYear()
 
-
         return {
-            // store: useStore(),
             currentYear,
-            // showmenu,
             locale: locale,
             locales: locales,
             setLocale: setLocale

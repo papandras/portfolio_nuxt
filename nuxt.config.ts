@@ -3,7 +3,11 @@ export default defineNuxtConfig({
   compatibilityDate: "2024-04-03",
   devtools: { enabled: true },
   modules: [["@pinia/nuxt", { autoImports: ["defineStore"] }], "@nuxtjs/i18n"],
-  plugins: ["~/plugins/cookies.js", "~/plugins/aos.js"],
+  plugins: [
+    "~/plugins/cookies.ts",
+    "~/plugins/aos.ts",
+    "~/plugins/gsap.client.ts",
+  ],
   css: ["aos/dist/aos.css", "./assets/style.css"],
   imports: {
     dirs: ["stores"],
