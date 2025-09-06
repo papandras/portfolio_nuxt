@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="section" id="aboutme">
+        <!-- <div class="section" id="aboutme">
             <a href="#aboutme" class="section-header">{{ store.texts.about }}</a>
             <Aboutme />
         </div>
@@ -15,25 +15,19 @@
         <div class="section" id="contact" data-aos="fade-up">
             <a href="#contact" class="section-header">{{ store.texts.contact.title }}</a>
             <Contact />
-        </div>
+        </div> -->
     </div>
 </template>
 
 <script>
-import { useStore } from "~/stores/lang.js"
-
-import Skills from "~/components/Skills.vue"
-import Timeline from "~/components/Timeline.vue"
-import Contact from "~/components/Contact.vue"
-import Aboutme from "~/components/Aboutme.vue"
+// const { locales, setLocale } = useI18n()
 
 export default {
-    components: {
-        Skills, Timeline, Contact, Aboutme
-    },
+    components: {},
     data() {
         return {
-            store: useStore()
+            // locales: locales,
+            // setLocale: setLocale
         }
     }
 }

@@ -1,7 +1,7 @@
 <template>
     <div>
         <header>
-            <ul class="menu">
+            <!-- <ul class="menu">
                 <li>
                     <a @click="showmenu" href="/" id="menu-item-name" class="menu-item">{{
                         store.texts.name
@@ -33,16 +33,19 @@
                 <li id="hamburger">
                     <img src="@/assets/icon/hamburger.svg" alt="Menu icon" class="menu-icon" @click="showmenu">
                 </li>
-            </ul>
+            </ul> -->
         </header>
 
         <main>
-            <Cookiebar />
+            <button v-for="locale in locales" @click="setLocale(locale.code)">
+                {{ locale.code }}
+            </button>
+            <!-- <Cookiebar /> -->
             <slot />
         </main>
 
         <footer>
-            <p>© {{ currentYear }} {{ store.texts.name }}</p>
+            <p>© {{ currentYear }} {{ $t('full_name') }}</p>
             <div>
                 <a href="https://www.linkedin.com/in/andr%C3%A1s-pap-519a7b240/" target="_blank"><i
                         class="fa-brands fa-linkedin-in"></i></a>
@@ -53,36 +56,31 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
-import { useStore } from "~/stores/lang.js"
+// import { RouterLink, RouterView } from 'vue-router'
+// import { useStore } from "~/stores/lang.js"
+
 
 export default {
     data() {
-        const showmenu = () => {
-            document.getElementById("hidable").classList.toggle("menu-hided")
-            document.getElementById("hidable").classList.toggle("menu-visible")
-            document.getElementsByTagName("main")[0].classList.toggle("menu-hided")
-        }
+        const { locale, locales, setLocale } = useI18n()
+
+        // const showmenu = () => {
+        //     document.getElementById("hidable").classList.toggle("menu-hided")
+        //     document.getElementById("hidable").classList.toggle("menu-visible")
+        //     document.getElementsByTagName("main")[0].classList.toggle("menu-hided")
+        // }
 
         const currentYear = new Date().getFullYear()
 
+
         return {
-            store: useStore(),
+            // store: useStore(),
             currentYear,
-            showmenu,
+            // showmenu,
+            locale: locale,
+            locales: locales,
+            setLocale: setLocale
         }
     }
 };
 </script>
-
-<style scoped>
-footer>a {
-    padding: none;
-}
-
-footer>div {
-    display: flex;
-    justify-content: center;
-    gap: 5%;
-}
-</style>
