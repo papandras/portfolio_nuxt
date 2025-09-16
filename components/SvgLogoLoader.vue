@@ -5,10 +5,15 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted } from 'vue'
+
+import { onMounted, watch } from 'vue'
 import gsap from 'gsap'
 
 import svgContent from '~/assets/svg/siluette.svg?raw' // <-- Itt importáljuk az SVG tartalmát
+
+import { useThemeStore } from '../stores/theme';
+
+const themeStore = useThemeStore();
 
 
 onMounted(() => {
@@ -25,9 +30,21 @@ onMounted(() => {
         gsap.set([outerPath, innerPath1, innerPath2], {
             strokeDasharray: (i, target) => target.getTotalLength(),
             strokeDashoffset: (i, target) => target.getTotalLength(),
-            stroke: '#000',
+            stroke: themeStore.currentTheme === 'light' ? '#000' : '#fff',
             fill: 'none',
         })
+
+        watch(
+            () => themeStore.currentTheme,
+            (newTheme) => {
+                const strokeColor = newTheme === 'light' ? '#000' : '#fff';
+                gsap.to([outerPath, innerPath1, innerPath2], {
+                    stroke: strokeColor,
+                    duration: 0,
+                });
+            },
+            { immediate: true }
+        );
 
         // Animáld az első (külső) path-t
         tl.to(outerPath, {
@@ -59,20 +76,15 @@ onMounted(() => {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    background-color: #7f1818;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-
-.svg-container svg {
-    width: 100px;
-    height: 100px;
+    /* background-color: var(--bg-color); */
 }
 
 .svg-container {
     stroke-width: 20px;
+}
+
+.svg-container :deep(svg) {
+    max-height: 100%;
+    max-width: 100%;
 }
 </style>

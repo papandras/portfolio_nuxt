@@ -29,5 +29,7 @@
   "send": "Send",
   "accept": "Accept",
   "decline": "Decline",
-  "message": "We use cookies to ensure you get the best experience on our website."
+  "message": "We use cookies to ensure you get the best experience on our website.",
+  "hu": "Hungarian",
+  "en": "English"
 }

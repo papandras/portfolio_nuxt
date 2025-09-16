@@ -29,5 +29,7 @@
   "send": "Küldés",
   "accept": "Elfogadom",
   "decline": "Elutasítom",
-  "message": "Az oldal sütiket használ a működéshez. A weblap látogatásával hozzájárul ahhoz, hogy ezeket a sütiket elhelyezzük eszközén."
+  "message": "Az oldal sütiket használ a működéshez. A weblap látogatásával hozzájárul ahhoz, hogy ezeket a sütiket elhelyezzük eszközén.",
+  "hu": "Magyar",
+  "en": "Angol"
 }

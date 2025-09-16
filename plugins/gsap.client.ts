@@ -1,4 +1,4 @@
-// plugins/gsap.client.js
+import { defineNuxtPlugin } from "nuxt/app";
 
 import { gsap } from "gsap";
 
