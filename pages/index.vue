@@ -3,9 +3,7 @@
         <transition name="fade">
             <div class="grid-item" id="item1" v-if="!isLoading">
                 <SiteSection title="about" href="/about">
-                    <p>
-                        Valami tartalom
-                    </p>
+                    <SiteSectionContentAbout :protected="true" />
                 </SiteSection>
             </div>
         </transition>
@@ -13,9 +11,7 @@
         <transition name="fade">
             <div class="grid-item" id="item2" v-if="!isLoading">
                 <SiteSection title="experience" href="/experience" alignment="flex-end">
-                    <p>
-                        Valami tartalom
-                    </p>
+                    <SiteSectionContentExperience />
                 </SiteSection>
             </div>
         </transition>
@@ -23,9 +19,7 @@
         <transition name="fade">
             <div class="grid-item" id="item3" v-if="!isLoading">
                 <SiteSection title="skills" href="/skills">
-                    <p>
-                        Valami tartalom
-                    </p>
+                    <SiteSectionContentSkills />
                 </SiteSection>
             </div>
         </transition>
@@ -33,9 +27,7 @@
         <transition name="fade">
             <div class="grid-item" id="item4" v-if="!isLoading">
                 <SiteSection title="projects" href="/projects" alignment="flex-end">
-                    <p>
-                        Valami tartalom
-                    </p>
+                    <SiteSectionContentProjects />
                 </SiteSection>
             </div>
         </transition>
@@ -52,7 +44,7 @@
                     <NuxtLink to="/contact" class="nuxt-link">
                         <p>
                             <i class="fa-solid fa-hand-point-right"></i>
-                            Írj nekem
+                            {{ $t('send_me_a_message') }}
                         </p>
                     </NuxtLink>
                 </SiteSection>
@@ -84,7 +76,7 @@ onMounted(() => {
 }
 
 .grid-container {
-    height: 100%;
+    height: 90vh;
     display: grid;
     grid-template-columns: 2fr 1fr 2fr;
     grid-template-rows: repeat(4, 1fr) 100px;

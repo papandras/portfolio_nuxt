@@ -42,13 +42,13 @@ const hexToRgb = (inputString: string, hex: string) => {
 };
 
 const themes: Themes = {
-  light: {
+  dark: {
     ...hexToRgb("--bg-color", "#36454F"),
     ...hexToRgb("--text-color", "#000000"),
     ...hexToRgb("--primary-color", "#6082B6"),
   },
 
-  dark: {
+  light: {
     ...hexToRgb("--bg-color", "#6082B6"),
     ...hexToRgb("--text-color", "#ffffff"),
     ...hexToRgb("--primary-color", "#36454F"),

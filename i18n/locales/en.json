@@ -32,5 +32,14 @@
   "message": "We use cookies to ensure you get the best experience on our website.",
   "hu": "Hungarian",
   "en": "English",
-  "projects": "Projects"
+  "projects": "Projects",
+  "send_me_a_message": "Send me a message",
+  "hobbies": "Hobbies",
+  "game_translations": "Game translations",
+  "status": "Status",
+  "completed": "Completed",
+  "in_progress": "In progress",
+  "futured": "Futured",
+  "year": "Year",
+  "download_cv": "Download CV"
 }

@@ -32,5 +32,14 @@
   "message": "Az oldal sütiket használ a működéshez. A weblap látogatásával hozzájárul ahhoz, hogy ezeket a sütiket elhelyezzük eszközén.",
   "hu": "Magyar",
   "en": "Angol",
-  "projects": "Munkáim"
+  "projects": "Munkáim",
+  "send_me_a_message": "Küldj üzenetet",
+  "hobbies": "Hobbijaim",
+  "game_translations": "Játék fordítások",
+  "status": "Státusz",
+  "completed": "Kész",
+  "in_progress": "Folyamatban",
+  "futured": "Hamarosan",
+  "year": "Év",
+  "download_cv": "Önéletrajz letöltése"
 }

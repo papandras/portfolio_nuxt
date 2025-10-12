@@ -2,7 +2,7 @@
     <button @click="themeStore.toggleTheme">
         <i class="fa-solid fa-moon" v-if="themeStore.currentTheme === 'dark'"></i>
         <i class="fa-solid fa-sun" v-if="themeStore.currentTheme === 'light'"></i>
-        Váltás {{ themeStore.currentTheme === 'light' ? 'Világos' : 'Sötét' }} Témára
+        Váltás {{ themeStore.currentTheme === 'light' ? 'Sötét' : 'Világos' }} Témára
     </button>
 </template>
 

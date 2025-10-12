@@ -30,14 +30,14 @@ onMounted(() => {
         gsap.set([outerPath, innerPath1, innerPath2], {
             strokeDasharray: (i, target) => target.getTotalLength(),
             strokeDashoffset: (i, target) => target.getTotalLength(),
-            stroke: themeStore.currentTheme === 'light' ? '#000' : '#fff',
+            stroke: themeStore.currentTheme === 'light' ? '#fff' : '#',
             fill: 'none',
         })
 
         watch(
             () => themeStore.currentTheme,
             (newTheme) => {
-                const strokeColor = newTheme === 'light' ? '#000' : '#fff';
+                const strokeColor = newTheme === 'light' ? '#fff' : '#000';
                 gsap.to([outerPath, innerPath1, innerPath2], {
                     stroke: strokeColor,
                     duration: 0,
