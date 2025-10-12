@@ -84,7 +84,13 @@ onMounted(() => {
 }
 
 .svg-container :deep(svg) {
-    max-height: 100%;
-    max-width: 100%;
+    height: max(100%, 100%);
+    width: max(100%, 100%);
+    transition: transform 0.3s ease-in-out;
+}
+
+.svg-container:hover :deep(svg) {
+    transform: scale3d(1.05, 1.05, 1);
+    transition: transform 0.3s ease-in-out;
 }
 </style>

@@ -2,7 +2,7 @@
     <div class="grid-container">
         <transition name="fade">
             <div class="grid-item" id="item1" v-if="!isLoading">
-                <SiteSection title="about">
+                <SiteSection title="about" href="/about">
                     <p>
                         Valami tartalom
                     </p>
@@ -12,7 +12,7 @@
 
         <transition name="fade">
             <div class="grid-item" id="item2" v-if="!isLoading">
-                <SiteSection title="experience" alignment="flex-end">
+                <SiteSection title="experience" href="/experience" alignment="flex-end">
                     <p>
                         Valami tartalom
                     </p>
@@ -22,7 +22,7 @@
 
         <transition name="fade">
             <div class="grid-item" id="item3" v-if="!isLoading">
-                <SiteSection title="skills">
+                <SiteSection title="skills" href="/skills">
                     <p>
                         Valami tartalom
                     </p>
@@ -32,7 +32,7 @@
 
         <transition name="fade">
             <div class="grid-item" id="item4" v-if="!isLoading">
-                <SiteSection title="contact" alignment="flex-end">
+                <SiteSection title="projects" href="/projects" alignment="flex-end">
                     <p>
                         Valami tartalom
                     </p>
@@ -45,6 +45,19 @@
                 <SvgLogoLoader />
             </transition>
         </div>
+
+        <transition name="fade">
+            <div class="grid-item" id="item6" v-if="!isLoading">
+                <SiteSection title="contact" alignment="flex-end">
+                    <NuxtLink to="/contact" class="nuxt-link">
+                        <p>
+                            <i class="fa-solid fa-hand-point-right"></i>
+                            Írj nekem
+                        </p>
+                    </NuxtLink>
+                </SiteSection>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -73,17 +86,18 @@ onMounted(() => {
 .grid-container {
     height: 100%;
     display: grid;
-    grid-template-columns: 5fr 100px 5fr;
-    grid-template-rows: 5fr 100px 5fr;
+    grid-template-columns: 2fr 1fr 2fr;
+    grid-template-rows: repeat(4, 1fr) 100px;
     grid-template-areas:
         "top-left . top-right"
-        ". center ."
-        "bottom-left . bottom-right";
+        "top-left center top-right"
+        "bottom-left center bottom-right"
+        "bottom-left . bottom-right"
+        ". . contact";
 }
 
 .grid-item {
     background-color: var(--bg-color);
-    /* border: 1px solid var(--text-color); */
 }
 
 #item1 {
@@ -105,14 +119,46 @@ onMounted(() => {
 #item5 {
     /* background-color: var(--primary-color); */
     grid-area: center;
-    height: 50vh;
-    width: 20vw;
+    /* height: 50vh;
+    width: 20vw; */
     display: flex;
     justify-content: center;
     align-items: center;
-    position: absolute;
+    /* position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%); */
+    max-height: 50vh;
+}
+
+#item6 {
+    grid-area: contact;
+    /* background-color: var(--bg-color); */
+}
+
+.fa-hand-point-right {
+    margin: 1rem;
+    color: var(--text-color);
+    animation: bounce-right 0.8s infinite ease-in-out;
+}
+
+.fa-arrow-right {
+    margin: 1rem;
+    color: var(--text-color);
+    animation: bounce-right 0.8s infinite ease-in-out;
+}
+
+@keyframes bounce-right {
+
+    0%,
+    100% {
+        transform: translateX(-5px);
+        /* Kezdeti és végső pozíció */
+    }
+
+    50% {
+        transform: translateX(5px);
+        /* Az animáció közepén 5px-t jobbra mozdul */
+    }
 }
 </style>

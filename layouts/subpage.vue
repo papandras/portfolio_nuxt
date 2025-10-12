@@ -1,6 +1,6 @@
 <template>
     <div>
-        <Header :withNav="false" />
+        <Header :withNav="true" />
 
         <main>
             <slot />

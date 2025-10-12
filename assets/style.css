@@ -13,5 +13,10 @@ body {
     color: var(--text-color);
     overflow-x: hidden;
     min-height: 100vh;
-    min-height: 100dvh;
+}
+
+.nuxt-link {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
 }

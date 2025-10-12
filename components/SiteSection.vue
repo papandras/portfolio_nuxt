@@ -2,11 +2,13 @@
     <section :style="{ 'align-items': sectionAlignment }">
         <h1>{{ $t(title) }}</h1>
         <div class="content" :style="{ 'flex-direction': sectionAlignment === 'flex-start' ? 'row' : 'row-reverse' }">
-            <div>
+            <div class="content-slot" :style="{ 'justify-content': sectionAlignment }">
                 <slot />
             </div>
             <div>
-                <button class="forward">Tovább</button>
+                <NuxtLink :to="props.href" class="nuxt-link forward" v-if="props.href">
+                    Tovább
+                </NuxtLink>
             </div>
         </div>
     </section>
@@ -15,7 +17,8 @@
 <script setup lang="ts">
 const props = defineProps<{
     title: string,
-    alignment: string
+    alignment: string,
+    href?: string
 }>()
 
 const sectionAlignment = props.alignment || 'flex-start'
@@ -36,6 +39,14 @@ section {
     display: flex;
     justify-content: space-between;
     width: 80%;
+    height: 100%;
+}
+
+.content-slot {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .forward {
@@ -44,7 +55,6 @@ section {
     border: none;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    cursor: pointer;
     font-size: 1rem;
     transition: background-color 0.3s ease;
     border: 1px solid var(--text-color);

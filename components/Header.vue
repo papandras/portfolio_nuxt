@@ -1,6 +1,9 @@
 <template>
     <header>
         <div class="header-wrapper">
+            <nav v-if="withNav" class="nav">
+                <NuxtLink :to="page.path" v-for="page in pages" class="nav-link">{{ $t(page.name) }}</NuxtLink>
+            </nav>
             <div class="menu">
                 <i class="menu-icon fa-solid fa-bars" @click="toggleMenu" :class="{ 'rotated': isMenuOpen }"></i>
 
@@ -14,14 +17,29 @@
     </header>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref } from 'vue';
+
+const props = defineProps<{
+    withNav?: boolean
+}>();
+
+const withNav = props.withNav;
 
 const isMenuOpen = ref(false);
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
+
+const pages = [
+    { name: 'home', path: '/' },
+    { name: 'about', path: '/about' },
+    { name: 'experience', path: '/experience' },
+    { name: 'skills', path: '/skills' },
+    { name: 'projects', path: '/projects' },
+    { name: 'contact', path: '/contact' }
+];
 </script>
 
 <style scoped>
@@ -69,7 +87,6 @@ header {
     display: none;
 }
 
-
 .menu-icon {
     position: relative;
     top: 100%;
@@ -80,5 +97,28 @@ header {
 
 .rotated {
     transform: rotate(360deg) scale(2);
+}
+
+.nav {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-color);
+    text-decoration: none;
+}
+
+.nav-link:hover {
+    color: var(--primary-color);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
 }
 </style>
