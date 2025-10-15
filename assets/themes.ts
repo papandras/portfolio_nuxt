@@ -43,15 +43,15 @@ const hexToRgb = (inputString: string, hex: string) => {
 
 const themes: Themes = {
   dark: {
-    ...hexToRgb("--bg-color", "#36454F"),
-    ...hexToRgb("--text-color", "#000000"),
-    ...hexToRgb("--primary-color", "#6082B6"),
+    ...hexToRgb("--bg-color", "#37353E"),
+    ...hexToRgb("--text-color", "#D3DAD9"),
+    ...hexToRgb("--primary-color", "#715A5A"),
   },
 
   light: {
-    ...hexToRgb("--bg-color", "#6082B6"),
-    ...hexToRgb("--text-color", "#ffffff"),
-    ...hexToRgb("--primary-color", "#36454F"),
+    ...hexToRgb("--bg-color", "#D3DAD9"),
+    ...hexToRgb("--text-color", "#37353E"),
+    ...hexToRgb("--primary-color", "#715A5A"),
   },
 };
 

@@ -114,7 +114,6 @@ header {
 }
 
 .nav-link:hover {
-    color: var(--primary-color);
     text-decoration: underline;
     text-underline-offset: 4px;
     font-weight: bold;

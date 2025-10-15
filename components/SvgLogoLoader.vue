@@ -12,6 +12,7 @@ import gsap from 'gsap'
 import svgContent from '~/assets/svg/siluette.svg?raw' // <-- Itt importáljuk az SVG tartalmát
 
 import { useThemeStore } from '../stores/theme';
+import { themes } from '../assets/themes';
 
 const themeStore = useThemeStore();
 
@@ -30,16 +31,15 @@ onMounted(() => {
         gsap.set([outerPath, innerPath1, innerPath2], {
             strokeDasharray: (i, target) => target.getTotalLength(),
             strokeDashoffset: (i, target) => target.getTotalLength(),
-            stroke: themeStore.currentTheme === 'light' ? '#fff' : '#',
+            stroke: themes[themeStore.currentTheme]["--text-color"],
             fill: 'none',
         })
 
         watch(
             () => themeStore.currentTheme,
             (newTheme) => {
-                const strokeColor = newTheme === 'light' ? '#fff' : '#000';
                 gsap.to([outerPath, innerPath1, innerPath2], {
-                    stroke: strokeColor,
+                    stroke: themes[newTheme]["--text-color"],
                     duration: 0,
                 });
             },

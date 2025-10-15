@@ -1,15 +1,19 @@
 <template>
     <section :style="{ 'align-items': sectionAlignment }">
-        <h1>{{ $t(title) }}</h1>
-        <div class="content" :style="{ 'flex-direction': sectionAlignment === 'flex-start' ? 'row' : 'row-reverse' }">
-            <div class="content-slot" :style="{ 'justify-content': sectionAlignment }">
-                <slot />
-            </div>
+        <div class="section-header"
+            :style="{ 'flex-direction': sectionAlignment === 'flex-start' ? 'row' : 'row-reverse' }">
+            <h1>{{ $t(title) }}</h1>
             <div>
                 <NuxtLink :to="props.href" class="nuxt-link forward" v-if="props.href">
                     Tovább
                 </NuxtLink>
             </div>
+        </div>
+        <div class="content" :style="{ 'flex-direction': sectionAlignment === 'flex-start' ? 'row' : 'row-reverse' }">
+            <div class="content-slot" :style="{ 'justify-content': sectionAlignment }">
+                <slot />
+            </div>
+
         </div>
     </section>
 </template>
@@ -33,6 +37,17 @@ section {
     flex-direction: column;
     justify-content: center;
     height: 100%;
+}
+
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .content {

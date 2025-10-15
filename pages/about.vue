@@ -82,7 +82,7 @@ h4 {
 .game-item {
     border-radius: 8px;
     overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transition: all 0.3s ease;
     cursor: pointer;
     width: max(400px, 20%);
 }
@@ -94,6 +94,13 @@ h4 {
 .game-image {
     width: 100%;
     height: auto;
+    filter: grayscale(50%);
+    /* mix-blend-mode: luminosity; */
+}
+
+.game-image:hover {
+    filter: grayscale(0%);
+    /* mix-blend-mode: normal; */
 }
 
 .game-title {
