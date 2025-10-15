@@ -66,13 +66,6 @@ const gameTranslations = [{
 </script>
 
 <style scoped>
-h1,
-h2,
-h3,
-h4 {
-    margin: 2rem 0 1rem 0;
-}
-
 .game-list {
     display: flex;
     flex-wrap: wrap;
