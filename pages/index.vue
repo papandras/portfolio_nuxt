@@ -11,7 +11,7 @@
         <transition name="fade">
             <div class="grid-item" id="item2" v-if="!isLoading">
                 <SiteSection title="experience" href="/experience" alignment="flex-end">
-                    <SiteSectionContentExperience />
+                    <SiteSectionContentExperience :protected="true" />
                 </SiteSection>
             </div>
         </transition>
@@ -19,7 +19,7 @@
         <transition name="fade">
             <div class="grid-item" id="item3" v-if="!isLoading">
                 <SiteSection title="skills" href="/skills">
-                    <SiteSectionContentSkills />
+                    <SiteSectionContentSkills :protected="true" />
                 </SiteSection>
             </div>
         </transition>
@@ -27,7 +27,7 @@
         <transition name="fade">
             <div class="grid-item" id="item4" v-if="!isLoading">
                 <SiteSection title="projects" href="/projects" alignment="flex-end">
-                    <SiteSectionContentProjects />
+                    <SiteSectionContentProjects :protected="true" />
                 </SiteSection>
             </div>
         </transition>
