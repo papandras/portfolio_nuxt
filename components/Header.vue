@@ -80,7 +80,7 @@ header {
     padding: 10px;
     border-radius: 8px;
 
-    z-index: 999;
+    z-index: 999 !important;
 }
 
 .menu-closed {

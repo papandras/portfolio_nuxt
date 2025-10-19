@@ -314,10 +314,6 @@ const skillGroups = skills.reduce((groups, skill) => {
     padding: .5rem 0;
 }
 
-#about-section {
-    padding-right: .5rem;
-}
-
 .skill-container {
     display: flex;
     flex-direction: column;

@@ -53,8 +53,4 @@ const isProtected = props.protected || false;
 .public p {
     padding: .5rem 0;
 }
-
-#about-section {
-    padding-right: .5rem;
-}
 </style>
