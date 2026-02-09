@@ -163,5 +163,19 @@ const projects = [
     .project-img img {
         max-width: 100%;
     }
+
+    .public .project-item {
+        width: 100%;
+        padding: 0;
+    }
+
+    .project-img {
+        max-width: 100%;
+    }
+
+    .project-content {
+        min-width: unset;
+        width: 100%;
+    }
 }
 </style>
