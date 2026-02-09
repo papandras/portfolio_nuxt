@@ -1,13 +1,17 @@
 <template>
     <header>
         <div class="header-wrapper">
-            <nav v-if="withNav" class="nav">
+            <nav v-if="withNav && !isMobile" class="nav">
                 <NuxtLink :to="page.path" v-for="page in pages" class="nav-link">{{ $t(page.name) }}</NuxtLink>
             </nav>
             <div class="menu">
                 <i class="menu-icon fa-solid fa-bars" @click="toggleMenu" :class="{ 'rotated': isMenuOpen }"></i>
 
                 <div :class="{ 'menu-open': isMenuOpen, 'menu-closed': !isMenuOpen }">
+                    <nav v-if="withNav && isMobile" class="nav-mobile">
+                        <NuxtLink :to="page.path" v-for="page in pages" class="nav-link">{{ $t(page.name) }}</NuxtLink>
+                    </nav>
+
                     <LangSwitcher />
                     <ThemeSwitcher />
                 </div>
@@ -18,19 +22,44 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed, onBeforeUnmount, onMounted } from 'vue';
 
 const props = defineProps<{
     withNav?: boolean
 }>();
 
-const withNav = props.withNav;
-
 const isMenuOpen = ref(false);
+const width = ref<number | null>(null)
 
 const toggleMenu = () => {
     isMenuOpen.value = !isMenuOpen.value;
 };
+
+const updateWidth = () => {
+    width.value = window.innerWidth;
+};
+
+onMounted(() => {
+    updateWidth();
+    window.addEventListener('resize', updateWidth)
+
+    const body = document.body as HTMLElement;
+
+    if (body) {
+        body.addEventListener('click', (event) => {
+            const menu = document.querySelector('.menu') as HTMLElement;
+            if (menu && !menu.contains(event.target as Node)) {
+                isMenuOpen.value = false;
+            }
+        });
+    }
+});
+
+onBeforeUnmount(() => {
+    window.addEventListener('resize', updateWidth);
+});
+
+const withNav = props.withNav || false;
 
 const pages = [
     { name: 'home', path: '/' },
@@ -40,6 +69,8 @@ const pages = [
     { name: 'projects', path: '/projects' },
     { name: 'contact', path: '/contact' }
 ];
+
+const isMobile = computed(() => (width.value ?? 9999) < 768)
 </script>
 
 <style scoped>
@@ -47,6 +78,7 @@ header {
     position: sticky;
     top: 0;
     height: 5vh;
+    z-index: 999 !important;
 }
 
 .header-wrapper {
@@ -65,10 +97,12 @@ header {
     top: 50%;
     right: 2rem;
     transform: translate(-50%, -50%);
+    z-index: 999;
 }
 
 .menu-open {
     width: 15vw;
+    min-width: 250px;
     position: absolute;
     top: 200%;
     right: 0;
@@ -79,8 +113,12 @@ header {
     background-color: var(--bg-color);
     padding: 10px;
     border-radius: 8px;
+}
 
-    z-index: 999 !important;
+@media (max-width: 768px) {
+    .menu-open {
+        top: 110%;
+    }
 }
 
 .menu-closed {
@@ -106,6 +144,13 @@ header {
     transform: translate(-50%, -50%);
     display: flex;
     gap: 2rem;
+}
+
+.nav-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding: 1rem;
 }
 
 .nav-link {

@@ -56,7 +56,6 @@ const selectLocale = (code: string) => {
     top: 100%;
     left: 0;
     right: 0;
-    z-index: 99;
     background-color: var(--bg-color);
     border: 1px solid var(--text-color);
     border-top: none;

@@ -63,6 +63,14 @@ onMounted(() => {
     setTimeout(() => {
         isLoading.value = false
     }, 1000)
+
+    const windowWidth = window.innerWidth
+    if (windowWidth < 768) {
+        const svgContainer = document.getElementById('item5') as HTMLElement;
+        setTimeout(() => {
+            svgContainer.style.display = 'none';
+        }, 2000); // Ez a timeout megegyezik a CSS-ben megadott átmeneti idővel
+    }
 })
 </script>
 
@@ -86,6 +94,45 @@ onMounted(() => {
         "bottom-left center bottom-right"
         "bottom-left . bottom-right"
         ". . contact";
+    padding-block: .5rem;
+}
+
+@media (width < 768px) {
+    .grid-container {
+        height: unset;
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(6, auto);
+        grid-template-areas:
+            "center"
+            "top-left"
+            "top-right"
+            "bottom-left"
+            "bottom-right"
+            "contact";
+    }
+
+    .grid-item {
+        width: 100%;
+        max-height: 300px;
+        display: flex;
+        justify-content: center;
+        align-items: center
+    }
+
+    #item5 {
+        height: 100vh;
+        max-height: 100vh !important;
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 999;
+        overflow-x: hidden;
+    }
+
+    #item6 h1 {
+        text-align: center !important;
+    }
 }
 
 .grid-item {

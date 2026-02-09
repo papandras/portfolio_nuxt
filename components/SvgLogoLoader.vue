@@ -6,7 +6,7 @@
 
 <script setup lang="ts">
 
-import { onMounted, watch } from 'vue'
+import { onMounted, watch, onBeforeMount } from 'vue'
 import gsap from 'gsap'
 
 import svgContent from '~/assets/svg/siluette.svg?raw' // <-- Itt importáljuk az SVG tartalmát
@@ -16,6 +16,16 @@ import { themes } from '../assets/themes';
 
 const themeStore = useThemeStore();
 
+onBeforeMount(() => {
+    const windowWidth = window.innerWidth
+    if (windowWidth < 768) {
+        const svgContainer = document.querySelector('.svg-container') as HTMLElement;
+
+        if (svgContainer) {
+            svgContainer.classList.add('svg-container-hided');
+        }
+    }
+})
 
 onMounted(() => {
     // Gyűjtsd be az összes path-t ID alapján
@@ -77,10 +87,12 @@ onMounted(() => {
     justify-content: center;
     align-items: center;
     /* background-color: var(--bg-color); */
+    stroke-width: 20px;
 }
 
-.svg-container {
-    stroke-width: 20px;
+.svg-container-hided {
+    opacity: 0;
+    transition: opacity 1s ease-in-out 1s;
 }
 
 .svg-container :deep(svg) {

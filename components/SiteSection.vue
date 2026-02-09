@@ -2,7 +2,8 @@
     <section :style="{ 'align-items': sectionAlignment }">
         <div class="section-header"
             :style="{ 'flex-direction': sectionAlignment === 'flex-start' ? 'row' : 'row-reverse' }">
-            <h1>{{ $t(title) }}</h1>
+            <h1 :style="{ 'text-align': sectionAlignment === 'flex-start' ? 'left' : 'right' }">{{ $t(title) }}
+            </h1>
             <div>
                 <NuxtLink :to="props.href" class="nuxt-link forward" v-if="props.href">
                     Tovább
@@ -48,6 +49,8 @@ section {
 h1 {
     font-size: 2rem;
     margin-bottom: 1.5rem;
+    width: 100%;
+    text-align: center;
 }
 
 .content {
@@ -77,5 +80,16 @@ h1 {
 
 .forward:hover {
     border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+    .content {
+        width: 100%;
+    }
+
+    .content-slot {
+        flex-direction: column;
+        gap: 2rem;
+    }
 }
 </style>
