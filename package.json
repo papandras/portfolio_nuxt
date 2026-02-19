@@ -28,5 +28,8 @@
     "@nuxt/typescript-build": "^3.0.2",
     "@vue/tsconfig": "^0.8.1",
     "typescript": "^5.9.2"
+  },
+  "optionalDependencies": {
+    "@oxc-parser/binding-linux-x64-gnu": "*"
   }
 }
