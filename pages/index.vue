@@ -1,83 +1,119 @@
 <template>
-    <div class="avant-garde-container" ref="container">
-        <!-- Sticky Hero Section -->
-        <section class="section hero-section">
+    <div class="noir-home">
+        <!-- ===== HERO ===== -->
+        <section class="hero-section">
             <div class="hero-content">
-                <h1 class="massive-text" data-aos="fade-up">ANDRÁS</h1>
-                <h1 class="massive-text text-accent" data-aos="fade-up" data-aos-delay="200">PAP.</h1>
-                <p class="role-text" data-aos="fade-left" data-aos-delay="400">CREATIVE DEVELOPER</p>
+                <div class="hero-label" data-aos="fade-down" data-aos-duration="800">
+                    <span class="label-line"></span>
+                    <span class="label-text">PORTFOLIO — 2025</span>
+                </div>
+
+                <h1 class="hero-name" data-aos="fade-up" data-aos-duration="1000">
+                    <span class="name-line outline-text">PAP</span>
+                    <span class="name-line text-accent">ANDRÁS</span>
+                </h1>
+
+                <p class="hero-role" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
+                    {{ $t('introduction') }}
+                </p>
+
+                <div class="hero-cta" data-aos="fade-up" data-aos-delay="400">
+                    <NuxtLink :to="localePath('/projects')" class="btn-gradient">
+                        {{ $t('projects') }} <i class="fa-solid fa-arrow-right"></i>
+                    </NuxtLink>
+                    <NuxtLink :to="localePath('/contact')" class="btn-outline">
+                        {{ $t('contact') }}
+                    </NuxtLink>
+                </div>
             </div>
-            <div class="scroll-down">
+
+            <div class="scroll-indicator">
                 <span>SCROLL</span>
-                <div class="line"></div>
+                <div class="scroll-line"></div>
             </div>
         </section>
 
-        <!-- About Section (Overlaps Hero) -->
-        <section class="section about-section">
-            <div class="grid-layout">
-                <div class="col-left" data-aos="fade-right">
-                    <h2 class="section-title">01 / {{ $t('about') || 'ABOUT' }}</h2>
+        <!-- ===== ABOUT PREVIEW ===== -->
+        <section class="section about-preview-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">01</span>
+                    <h2 class="section-label">{{ $t('about') }}</h2>
                 </div>
-                <div class="col-right" data-aos="fade-up">
-                    <p class="big-paragraph">
-                        I craft digital experiences that live at the intersection of bold design and flawless engineering. No compromises, just impact.
+                <div class="split-content" data-aos="fade-up">
+                    <p class="big-text">
+                        {{ $t('introduction') }}
                     </p>
-                    <NuxtLink :to="localePath('/about')" class="brutal-btn">READ FULL BIO</NuxtLink>
+                    <NuxtLink :to="localePath('/about')" class="btn-outline mt-lg">
+                        {{ $t('about') }} <i class="fa-solid fa-arrow-right"></i>
+                    </NuxtLink>
                 </div>
             </div>
         </section>
 
-        <!-- Experience & Skills Section -->
-        <section class="section dark-section">
-            <div class="marquee-wrapper">
-                <div class="marquee">
-                    <span>VUE • NUXT • TYPESCRIPT • GSAP • VUE • NUXT • TYPESCRIPT • GSAP •</span>
+        <!-- ===== SKILLS MARQUEE ===== -->
+        <section class="marquee-section">
+            <div class="marquee-track">
+                <div class="marquee-content">
+                    <span v-for="n in 3" :key="n">
+                        VUE • NUXT • TYPESCRIPT • NODE.JS • PHP • LARAVEL • REACT • C# • WORDPRESS • GSAP •&nbsp;
+                    </span>
                 </div>
             </div>
-            
-            <div class="grid-layout mt-large">
-                <div class="col-left" data-aos="fade-right">
-                    <h2 class="section-title text-accent">02 / {{ $t('experience') || 'EXPERTISE' }}</h2>
+        </section>
+
+        <!-- ===== EXPERIENCE ===== -->
+        <section class="section experience-preview-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">02</span>
+                    <h2 class="section-label">{{ $t('experience') }}</h2>
                 </div>
-                <div class="col-right" data-aos="fade-left">
-                    <ul class="brutal-list">
-                        <li>
-                            <span class="year">2023-PRESENT</span>
-                            <h3>Senior Frontend</h3>
+                <div class="split-content" data-aos="fade-left">
+                    <ul class="exp-list">
+                        <li class="exp-item">
+                            <div class="exp-meta">
+                                <span class="exp-year">2022 — {{ $t('en') === 'English' ? 'JELEN' : 'PRESENT' }}</span>
+                            </div>
+                            <h3 class="exp-title">{{ $t('company') }}</h3>
                         </li>
-                        <li>
-                            <span class="year">2021-2023</span>
-                            <h3>Fullstack Dev</h3>
+                        <li class="exp-item">
+                            <div class="exp-meta">
+                                <span class="exp-year">2017 — 2022</span>
+                            </div>
+                            <h3 class="exp-title">{{ $t('neumann') }}</h3>
                         </li>
                     </ul>
-                    <NuxtLink :to="localePath('/experience')" class="brutal-btn mt-normal">VIEW TIMELINE</NuxtLink>
+                    <NuxtLink :to="localePath('/experience')" class="btn-outline mt-lg">
+                        {{ $t('experience') }} <i class="fa-solid fa-arrow-right"></i>
+                    </NuxtLink>
                 </div>
             </div>
         </section>
 
-        <!-- Projects Section -->
-        <section class="section projects-section">
-            <div class="full-width-content text-center" data-aos="zoom-in">
-                <h2 class="massive-text outline-text">{{ $t('projects') || 'SELECTED' }}</h2>
-                <h2 class="massive-text">WORKS</h2>
-                <NuxtLink :to="localePath('/projects')" class="brutal-btn-massive mt-normal">EXPLORE ALL</NuxtLink>
+        <!-- ===== PROJECTS CTA ===== -->
+        <section class="section projects-cta-section">
+            <div class="projects-cta-content" data-aos="zoom-in" data-aos-duration="800">
+                <h2 class="massive-text outline-text">{{ $t('projects') }}</h2>
+                <h2 class="massive-text text-accent">WORKS</h2>
+                <NuxtLink :to="localePath('/projects')" class="btn-gradient mt-lg">
+                    {{ $t('projects') }} <i class="fa-solid fa-arrow-right"></i>
+                </NuxtLink>
             </div>
         </section>
 
-        <!-- Contact Section -->
-        <section class="section contact-section">
-            <div class="grid-layout h-full items-end">
-                <div class="col-full" data-aos="fade-up">
-                    <h2 class="huge-text">LET'S BUILD</h2>
-                    <h2 class="huge-text text-accent">SOMETHING.</h2>
-                    <div class="contact-footer">
-                        <NuxtLink :to="localePath('/contact')" class="brutal-btn">SAY HELLO</NuxtLink>
-                        <div class="socials">
-                            <a href="#">GH</a>
-                            <a href="#">LI</a>
-                            <a href="#">TW</a>
-                        </div>
+        <!-- ===== CONTACT CTA ===== -->
+        <section class="section contact-cta-section">
+            <div class="contact-cta-inner" data-aos="fade-up">
+                <h2 class="huge-text">LET'S</h2>
+                <h2 class="huge-text text-accent">TALK.</h2>
+                <div class="contact-cta-footer">
+                    <NuxtLink :to="localePath('/contact')" class="btn-outline">
+                        {{ $t('send_me_a_message') }} <i class="fa-solid fa-arrow-right"></i>
+                    </NuxtLink>
+                    <div class="footer-socials">
+                        <a href="https://github.com/papandras" target="_blank" rel="noopener">GITHUB</a>
+                        <a href="https://linkedin.com" target="_blank" rel="noopener">LINKEDIN</a>
                     </div>
                 </div>
             </div>
@@ -93,255 +129,285 @@ const localePath = useLocalePath()
 </script>
 
 <style scoped>
-.avant-garde-container {
-    background-color: var(--bg-color);
+.noir-home {
+    background-color: var(--bg);
 }
 
-/* Sections */
-.section {
+/* ===== HERO ===== */
+.hero-section {
     min-height: 100vh;
-    padding: 2rem 5vw;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    position: sticky;
-    top: 0;
-    box-shadow: 0 -10px 30px rgba(0,0,0,0.5);
+    padding: 6rem var(--section-padding);
+    position: relative;
 }
 
-.hero-section {
-    background-color: var(--bg-color);
-    z-index: 1;
-}
-
-.about-section {
-    background-color: #111; /* Slight contrast */
-    z-index: 2;
-}
-
-.dark-section {
-    background-color: var(--bg-color);
-    z-index: 3;
-    padding-top: 5rem;
-}
-
-.projects-section {
-    background-color: var(--accent);
-    color: var(--bg-color);
-    z-index: 4;
-}
-
-.contact-section {
-    background-color: #050505;
-    z-index: 5;
-    padding-bottom: 5rem;
-}
-
-/* Typography */
-.massive-text {
-    font-size: clamp(4rem, 15vw, 12rem);
-    letter-spacing: -0.05em;
-    line-height: 0.85;
-}
-
-.huge-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--bg-color);
-}
-
-.role-text {
-    font-family: var(--font-body);
-    font-size: clamp(1rem, 2vw, 1.5rem);
-    letter-spacing: 0.2em;
-    margin-top: 2rem;
-    color: #888;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    font-family: var(--font-body);
-    font-weight: 500;
-}
-
-.big-paragraph {
-    font-size: clamp(1.5rem, 3vw, 3rem);
-    line-height: 1.3;
-    font-family: var(--font-display);
-    font-weight: 600;
-    margin-bottom: 3rem;
-}
-
-/* Layout */
-.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    width: 100%;
-    max-width: 1600px;
+.hero-content {
+    max-width: 1400px;
     margin: 0 auto;
+    width: 100%;
 }
 
-.col-full {
-    grid-column: 1 / -1;
-}
-
-.h-full {
-    height: 100%;
-}
-
-.items-end {
-    align-content: end;
-}
-
-.text-center {
-    text-align: center;
-}
-
-.mt-large { margin-top: 10rem; }
-.mt-normal { margin-top: 3rem; }
-
-/* Brutalist Buttons */
-.brutal-btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    border: 2px solid currentColor;
-    color: inherit;
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
-    cursor: none;
-}
-
-.brutal-btn:hover {
-    background-color: currentColor;
-    color: var(--bg-color);
-}
-
-.contact-section .brutal-btn:hover {
-    color: var(--accent) !important;
-    background-color: var(--text-color);
-    border-color: var(--text-color);
-}
-
-.brutal-btn-massive {
-    display: inline-block;
-    padding: 1.5rem 3rem;
-    background-color: var(--bg-color);
-    color: var(--accent);
-    font-size: 2rem;
-    font-family: var(--font-display);
-    border: none;
-    transition: transform 0.3s ease;
-    cursor: none;
-}
-
-.brutal-btn-massive:hover {
-    transform: scale(1.05);
-}
-
-/* Lists */
-.brutal-list {
-    list-style: none;
-    border-top: 2px solid #333;
-}
-
-.brutal-list li {
-    padding: 2rem 0;
-    border-bottom: 2px solid #333;
+.hero-label {
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
 }
 
-.brutal-list h3 {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
+.label-line {
+    display: block;
+    width: 60px;
+    height: 1px;
+    background: var(--gradient-accent-h);
 }
 
-.year {
+.label-text {
     font-family: var(--font-body);
-    color: #888;
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    color: var(--text-muted);
 }
 
-/* Marquee */
-.marquee-wrapper {
-    width: 100vw;
-    margin-left: -5vw;
-    overflow: hidden;
-    white-space: nowrap;
-    border-top: 1px solid #333;
-    border-bottom: 1px solid #333;
-    padding: 1rem 0;
+.hero-name {
+    display: flex;
+    flex-direction: column;
 }
 
-.marquee {
-    display: inline-block;
-    animation: marquee 15s linear infinite;
-    font-size: 2rem;
-    font-family: var(--font-display);
-    color: #555;
+.name-line {
+    font-size: clamp(5rem, 16vw, 14rem);
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+    font-weight: 700;
 }
 
-@keyframes marquee {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(-50%); }
+.hero-role {
+    font-size: clamp(1rem, 2vw, 1.4rem);
+    color: var(--text-muted);
+    max-width: 550px;
+    margin-top: 2.5rem;
+    line-height: 1.7;
 }
 
-/* Scroll indicator */
-.scroll-down {
+.hero-cta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 3rem;
+    flex-wrap: wrap;
+}
+
+/* Scroll Indicator */
+.scroll-indicator {
     position: absolute;
     bottom: 3rem;
-    right: 5vw;
+    right: var(--section-padding);
     display: flex;
     align-items: center;
     gap: 1rem;
     font-family: var(--font-body);
-    font-size: 0.8rem;
-    letter-spacing: 0.2em;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--text-dim);
     transform: rotate(90deg);
     transform-origin: right center;
 }
 
-.scroll-down .line {
-    width: 50px;
+.scroll-line {
+    width: 60px;
     height: 1px;
-    background-color: var(--text-color);
+    background: var(--gradient-accent-h);
+    animation: scrollPulse 2s ease-in-out infinite;
 }
 
-/* Contact Footer */
-.contact-footer {
+@keyframes scrollPulse {
+    0%, 100% { opacity: 0.3; width: 30px; }
+    50% { opacity: 1; width: 60px; }
+}
+
+/* ===== SECTION STYLING ===== */
+.split-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-number {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+}
+
+.section-label {
+    font-size: 1.2rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.big-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 600;
+    line-height: 1.3;
+}
+
+.mt-lg { margin-top: 3rem; }
+
+/* ===== ABOUT PREVIEW ===== */
+.about-preview-section {
+    background-color: var(--bg-elevated);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+/* ===== MARQUEE ===== */
+.marquee-section {
+    padding: 1.5rem 0;
+    overflow: hidden;
+    border-bottom: 1px solid var(--border);
+    background: var(--bg);
+}
+
+.marquee-track {
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.marquee-content {
+    display: inline-block;
+    animation: marquee 25s linear infinite;
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    color: var(--text-dim);
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-33.333%); }
+}
+
+/* ===== EXPERIENCE PREVIEW ===== */
+.exp-list {
+    border-top: 1px solid var(--border);
+}
+
+.exp-item {
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 2rem;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.exp-item:hover {
+    padding-left: 1rem;
+    border-bottom-color: var(--accent-start);
+}
+
+.exp-year {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+}
+
+.exp-title {
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    font-weight: 600;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+/* ===== PROJECTS CTA ===== */
+.projects-cta-section {
+    background: var(--bg-elevated);
+    text-align: center;
+    align-items: center;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.projects-cta-content {
+    text-align: center;
+}
+
+.massive-text {
+    font-size: clamp(4rem, 14vw, 12rem);
+    letter-spacing: -0.05em;
+    line-height: 0.85;
+}
+
+/* ===== CONTACT CTA ===== */
+.contact-cta-section {
+    background: var(--bg);
+    padding-bottom: 5rem;
+}
+
+.contact-cta-inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.huge-text {
+    font-size: clamp(3rem, 10vw, 9rem);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
+}
+
+.contact-cta-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 4rem;
-    border-top: 1px solid #333;
     padding-top: 2rem;
+    border-top: 1px solid var(--border);
+    flex-wrap: wrap;
+    gap: 2rem;
 }
 
-.socials {
+.footer-socials {
     display: flex;
     gap: 2rem;
-    font-family: var(--font-body);
 }
 
+.footer-socials a {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--text-dim);
+    transition: color 0.3s ease;
+}
+
+.footer-socials a:hover {
+    color: var(--accent-start);
+}
+
+/* ===== RESPONSIVE ===== */
 @media (max-width: 768px) {
-    .grid-layout {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-    
-    .scroll-down {
+    .scroll-indicator {
         display: none;
+    }
+
+    .exp-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .contact-cta-footer {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
 </style>

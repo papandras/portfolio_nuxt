@@ -1,58 +1,69 @@
 <template>
-    <div class="avant-garde-page">
-        <NuxtLink :to="localePath('/')" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') || 'BACK TO HOME' }}
+    <div class="noir-page">
+        <NuxtLink :to="localePath('/')" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') }}
         </NuxtLink>
 
-        <section class="section contact-hero">
-            <h1 class="huge-text outline-text" data-aos="fade-down">SAY</h1>
-            <h1 class="huge-text text-accent" data-aos="fade-up">HELLO.</h1>
+        <!-- Hero -->
+        <section class="page-hero">
+            <h1 class="hero-title">
+                <span class="outline-text" data-aos="fade-down">{{ $t('send_me_a_message') }}</span>
+                <span class="text-accent" data-aos="fade-up">{{ $t('contact') }}.</span>
+            </h1>
         </section>
 
-        <section class="section contact-content">
-            <div class="grid-layout">
-                <div class="col-left">
-                    <h2 class="section-title">{{ $t('contact') || 'CONTACT' }}</h2>
-                    
-                    <div class="contact-links mt-normal">
-                        <a href="mailto:hello@papandras.hu" class="brutal-contact-link">
-                            hello@papandras.hu
+        <!-- Contact Content -->
+        <section class="section contact-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">01</span>
+                    <h2 class="section-label">{{ $t('contact') }}</h2>
+
+                    <div class="contact-links">
+                        <a href="mailto:hello@papandras.hu" class="contact-link-item">
+                            <i class="fa-solid fa-at"></i> hello@papandras.hu
                         </a>
-                        <a href="https://linkedin.com" target="_blank" class="brutal-contact-link">
-                            LinkedIn
+                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link-item">
+                            <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="https://github.com/papandras" target="_blank" class="brutal-contact-link">
-                            GitHub
+                        <a href="https://github.com/papandras" target="_blank" rel="noopener" class="contact-link-item">
+                            <i class="fa-brands fa-github"></i> GitHub
                         </a>
                     </div>
                 </div>
-                <div class="col-right">
-                    <p class="big-paragraph mb-normal">
-                        {{ $t('send_me_a_message') || "Let's build something exceptional together. I'm currently open for new opportunities. Drop a message below." }}
-                    </p>
-                    
-                    <form id="contactform" @submit.prevent="sendEmail" class="brutal-form">
-                        <div class="form-group">
-                            <label for="contactname" class="brutal-label">{{ $t('name') || 'NAME' }}</label>
-                            <input type="text" name="name" id="contactname" v-model="formName" class="brutal-input" required autocomplete="name">
+                <div class="split-content" data-aos="fade-up">
+                    <form id="contactform" @submit.prevent="sendEmail" class="contact-form">
+                        <div class="form-field">
+                            <label for="contactname" class="field-label">{{ $t('name') }}</label>
+                            <input type="text" id="contactname" name="name" v-model="formName" class="field-input" required autocomplete="name">
+                            <div class="field-underline"></div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="email" class="brutal-label">{{ $t('email') || 'EMAIL' }}</label>
-                            <input type="email" name="email" id="email" v-model="formEmail" class="brutal-input" required autocomplete="email">
+
+                        <div class="form-field">
+                            <label for="email" class="field-label">{{ $t('email') }}</label>
+                            <input type="email" id="email" name="email" v-model="formEmail" class="field-input" required autocomplete="email">
+                            <div class="field-underline"></div>
                         </div>
-                        
-                        <div class="form-group">
-                            <label for="subject" class="brutal-label">{{ $t('subject') || 'MESSAGE' }}</label>
-                            <textarea name="subject" id="subject" v-model="formSubject" class="brutal-textarea" rows="5" required></textarea>
+
+                        <div class="form-field">
+                            <label for="subject" class="field-label">{{ $t('subject') }}</label>
+                            <textarea id="subject" name="subject" v-model="formSubject" class="field-textarea" rows="5" required></textarea>
+                            <div class="field-underline"></div>
                         </div>
-                        
-                        <button type="submit" class="brutal-submit-btn" :disabled="isSending">
-                            {{ isSending ? 'SENDING...' : ($t('send') || 'SEND MESSAGE') }}
+
+                        <button type="submit" class="btn-gradient submit-btn" :disabled="isSending">
+                            {{ isSending ? 'SENDING...' : ($t('send') || 'SEND') }}
+                            <i v-if="!isSending" class="fa-solid fa-paper-plane"></i>
                         </button>
-                        
-                        <p v-if="submitStatus === 'success'" class="status-msg success">Message sent successfully!</p>
-                        <p v-if="submitStatus === 'error'" class="status-msg error">Error sending message. Please try again.</p>
+
+                        <Transition name="fade">
+                            <p v-if="submitStatus === 'success'" class="status-msg success">
+                                <i class="fa-solid fa-check-circle"></i> Message sent successfully!
+                            </p>
+                            <p v-else-if="submitStatus === 'error'" class="status-msg error">
+                                <i class="fa-solid fa-exclamation-circle"></i> Error sending message. Please try again.
+                            </p>
+                        </Transition>
                     </form>
                 </div>
             </div>
@@ -68,7 +79,6 @@ import emailjs from 'emailjs-com'
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
 
-// Form State
 const formName = ref('')
 const formEmail = ref('')
 const formSubject = ref('')
@@ -76,215 +86,225 @@ const isSending = ref(false)
 const submitStatus = ref<'idle' | 'success' | 'error'>('idle')
 
 const sendEmail = async () => {
-    if (isSending.value) return;
-    
-    isSending.value = true;
-    submitStatus.value = 'idle';
-    
+    if (isSending.value) return
+
+    isSending.value = true
+    submitStatus.value = 'idle'
+
     try {
         await emailjs.send('service_i51noeu', 'template_5kb0nxf', {
             from_name: formName.value,
-            to_name: "András",
+            to_name: 'András',
             reply_to: formEmail.value,
             message: formSubject.value
         }, 'FRoQzZDdOrg0OYAxI')
-        
-        submitStatus.value = 'success';
-        
-        // Reset form fields
-        formName.value = '';
-        formEmail.value = '';
-        formSubject.value = '';
-        
-        setTimeout(() => { submitStatus.value = 'idle' }, 5000);
+
+        submitStatus.value = 'success'
+        formName.value = ''
+        formEmail.value = ''
+        formSubject.value = ''
+        setTimeout(() => { submitStatus.value = 'idle' }, 5000)
     } catch (error) {
-        console.error("Email send error:", error);
-        submitStatus.value = 'error';
+        console.error('Email send error:', error)
+        submitStatus.value = 'error'
     } finally {
-        isSending.value = false;
+        isSending.value = false
     }
 }
 </script>
 
 <style scoped>
-.avant-garde-page {
-    background-color: var(--bg-color);
+.noir-page {
+    background-color: var(--bg);
     min-height: 100vh;
-    padding-bottom: 10rem;
+    padding-bottom: 8rem;
 }
 
-.back-btn {
+.back-link {
     position: fixed;
     top: 2rem;
     left: 2rem;
     z-index: 100;
-    color: var(--text-color);
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-weight: 600;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
+    color: var(--text);
     mix-blend-mode: difference;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.back-btn:hover {
-    color: var(--accent);
+.back-link:hover { color: var(--accent-start); }
+
+.page-hero {
+    min-height: 45vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 var(--section-padding) 4rem;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(3rem, 8vw, 7rem);
+    letter-spacing: -0.04em;
+    line-height: 0.88;
 }
 
 .section {
-    padding: 2rem 5vw;
+    padding: 5rem var(--section-padding);
+    border-top: 1px solid var(--border);
 }
 
-.contact-hero {
-    min-height: 50vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 10rem;
-}
-
-.huge-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--text-color);
-}
-
-.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--accent);
-}
-
-.big-paragraph {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    line-height: 1.3;
-    font-family: var(--font-display);
-    font-weight: 600;
-    margin-bottom: 2rem;
-}
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-}
-
-.brutal-contact-link {
-    font-size: clamp(1.5rem, 3vw, 2rem);
-    font-family: var(--font-display);
-    color: var(--text-color);
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    border-bottom: 2px solid transparent;
-    width: fit-content;
-}
-
-.brutal-contact-link:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
-    padding-left: 1rem;
-}
-
-/* Form Styles */
-.brutal-form {
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    border-top: 2px solid #333;
-    padding-top: 2rem;
-}
-
-.form-group {
+.split-label {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
 }
 
-.brutal-label {
+.section-number {
     font-family: var(--font-body);
-    font-weight: bold;
-    letter-spacing: 0.1em;
-    color: var(--text-color);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
 }
 
-.brutal-input, .brutal-textarea {
-    background-color: transparent;
+.section-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 2rem;
+}
+
+/* Contact Links */
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 1rem;
+}
+
+.contact-link-item {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 2vw, 1.3rem);
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    transition: all 0.3s ease;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.contact-link-item:hover {
+    color: var(--accent-start);
+    transform: translateX(5px);
+}
+
+/* Form */
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+}
+
+.form-field {
+    position: relative;
+}
+
+.field-label {
+    display: block;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.8rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.field-input,
+.field-textarea {
+    width: 100%;
+    background: transparent;
     border: none;
-    border-bottom: 2px solid #333;
-    color: var(--text-color);
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
     font-family: var(--font-body);
     font-size: 1.2rem;
-    padding: 1rem 0;
-    transition: border-color 0.3s ease;
-}
-
-.brutal-input:focus, .brutal-textarea:focus {
+    padding: 0.8rem 0;
+    transition: border-color 0.4s var(--ease-out-expo);
     outline: none;
-    border-bottom-color: var(--accent);
 }
 
-.brutal-textarea {
+.field-textarea {
     resize: vertical;
+    min-height: 120px;
 }
 
-.brutal-submit-btn {
-    background-color: var(--text-color);
-    color: var(--bg-color);
-    border: none;
-    font-family: var(--font-display);
-    font-size: 1.5rem;
-    font-weight: 700;
-    padding: 1.5rem;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
+.field-underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--gradient-accent-h);
+    transition: width 0.5s var(--ease-out-expo);
+}
+
+.field-input:focus ~ .field-underline,
+.field-textarea:focus ~ .field-underline {
+    width: 100%;
+}
+
+.submit-btn {
+    align-self: flex-start;
     margin-top: 1rem;
 }
 
-.brutal-submit-btn:hover:not(:disabled) {
-    background-color: var(--accent);
-    color: var(--bg-color);
-    transform: translateY(-5px);
+.submit-btn:disabled {
+    opacity: 0.4;
+    pointer-events: none;
 }
 
-.brutal-submit-btn:disabled {
-    opacity: 0.5;
-    background-color: #333;
-}
-
+/* Status */
 .status-msg {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
     font-family: var(--font-body);
-    font-weight: bold;
-    margin-top: 1rem;
+    font-weight: 600;
+    font-size: 0.95rem;
 }
 
 .status-msg.success {
-    color: var(--accent);
+    color: #22c55e;
 }
 
 .status-msg.error {
-    color: #ff3333;
+    color: #ef4444;
 }
 
-.mb-normal { margin-bottom: 3rem; }
-.mt-normal { margin-top: 3rem; }
+.fade-enter-active,
+.fade-leave-active {
+    transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+    opacity: 0;
+}
 
 @media (max-width: 768px) {
-    .grid-layout { grid-template-columns: 1fr; gap: 4rem; }
+    .contact-links {
+        margin-bottom: 3rem;
+    }
 }
 </style>

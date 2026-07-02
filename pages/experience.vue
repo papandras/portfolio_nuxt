@@ -1,32 +1,39 @@
 <template>
-    <div class="avant-garde-page">
-        <NuxtLink :to="localePath('/')" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') || 'BACK TO HOME' }}
+    <div class="noir-page">
+        <NuxtLink :to="localePath('/')" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') }}
         </NuxtLink>
 
-        <section class="section exp-hero">
-            <h1 class="huge-text outline-text" data-aos="fade-down">MY</h1>
-            <h1 class="huge-text text-accent" data-aos="fade-up">{{ $t('experience') || 'EXPERIENCE' }}.</h1>
+        <!-- Hero -->
+        <section class="page-hero">
+            <h1 class="hero-title">
+                <span class="outline-text" data-aos="fade-down">MY</span>
+                <span class="text-accent" data-aos="fade-up">{{ $t('experience') }}.</span>
+            </h1>
         </section>
 
+        <!-- Timeline -->
         <section class="section timeline-section">
-            <div class="grid-layout">
-                <div class="col-left">
-                    <h2 class="section-title">THE TIMELINE</h2>
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">01</span>
+                    <h2 class="section-label">TIMELINE</h2>
                 </div>
-                <div class="col-right">
-                    <div class="brutal-timeline">
+                <div class="split-content">
+                    <div class="timeline">
                         <div v-for="exp in experience" :key="exp.year" class="timeline-item" data-aos="fade-up">
-                            <div class="timeline-header">
-                                <h3 class="timeline-place">{{ $t(exp.placeKey) || exp.place }}</h3>
-                                <div class="timeline-year">{{ exp.year }}</div>
-                            </div>
-                            <p v-if="exp.description" class="timeline-desc">{{ exp.description }}</p>
-                            
-                            <div class="timeline-skills mt-small">
-                                <span v-for="skill in exp.skills" :key="skill" class="brutal-tag">
-                                    {{ skill }}
-                                </span>
+                            <div class="timeline-dot"></div>
+                            <div class="timeline-card">
+                                <div class="timeline-header">
+                                    <h3 class="timeline-title">{{ $t(exp.placeKey) || exp.place }}</h3>
+                                    <span class="timeline-year">{{ exp.year }}</span>
+                                </div>
+                                <p v-if="exp.description" class="timeline-desc">{{ exp.description }}</p>
+                                <div class="timeline-skills">
+                                    <span v-for="skill in exp.skills" :key="skill" class="skill-chip">
+                                        {{ skill }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -43,120 +50,143 @@ definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
 
 const experience = [{
-    year: "2017 - 2022",
-    type: "school",
-    description: "",
-    place: "BMSZC Neumann János Informatikai Technikum",
-    placeKey: "neumann",
-    skills: ["HTML", "CSS", "JS", "PHP", "C#", "VUE"]
+    year: '2022 — PRESENT',
+    type: 'work',
+    place: 'HMSoft Zrt.',
+    placeKey: 'company',
+    description: 'Fullstack / Backend Developer',
+    skills: ['Node.JS', 'PHP', 'React', 'WordPress', 'GraphQL', 'PostgreSQL']
 }, {
-    year: "2022 - PRESENT",
-    type: "work",
-    place: "HMSoft Zrt.",
-    placeKey: "company",
-    description: "Fullstack / Backend Developer",
-    skills: ["Node.JS", "PHP", "React", "WordPress"]
+    year: '2017 — 2022',
+    type: 'school',
+    place: 'BMSZC Neumann János Informatikai Technikum',
+    placeKey: 'neumann',
+    description: '',
+    skills: ['HTML', 'CSS', 'JS', 'PHP', 'C#', 'VUE']
 }]
 </script>
 
 <style scoped>
-.avant-garde-page {
-    background-color: var(--bg-color);
+.noir-page {
+    background-color: var(--bg);
     min-height: 100vh;
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
 }
 
-.back-btn {
+.back-link {
     position: fixed;
     top: 2rem;
     left: 2rem;
     z-index: 100;
-    color: var(--text-color);
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-weight: 600;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
+    color: var(--text);
     mix-blend-mode: difference;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.back-btn:hover {
-    color: var(--accent);
+.back-link:hover { color: var(--accent-start); }
+
+.page-hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 var(--section-padding) 4rem;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(4rem, 12vw, 10rem);
+    letter-spacing: -0.04em;
+    line-height: 0.88;
 }
 
 .section {
-    padding: 2rem 5vw;
+    padding: 5rem var(--section-padding);
+    border-top: 1px solid var(--border);
 }
 
-.exp-hero {
-    min-height: 60vh;
+.split-label {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 10rem;
+    gap: 0.5rem;
 }
 
-.huge-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--text-color);
-}
-
-.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
+.section-number {
     font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--accent);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
 }
 
-.brutal-timeline {
+.section-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Timeline */
+.timeline {
     display: flex;
     flex-direction: column;
-    gap: 3rem;
-    border-left: 4px solid #333;
-    padding-left: 2rem;
+    gap: 2rem;
+    position: relative;
+    padding-left: 3rem;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 0;
+    bottom: 0;
+    width: 2px;
+    background: linear-gradient(180deg, var(--accent-start), var(--accent-end), transparent);
 }
 
 .timeline-item {
     position: relative;
-    padding: 2rem;
-    border: 2px solid #333;
-    background-color: var(--bg-color);
-    transition: all 0.3s ease;
 }
 
-.timeline-item:hover {
-    border-color: var(--text-color);
-    transform: translateX(10px);
-}
-
-.timeline-item::before {
-    content: '';
+.timeline-dot {
     position: absolute;
-    top: 50%;
-    left: -2.2rem;
-    width: 2rem;
-    height: 4px;
-    background-color: #333;
-    transition: background-color 0.3s ease;
+    left: -3rem;
+    top: 2rem;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--gradient-accent);
+    border: 3px solid var(--bg);
+    z-index: 1;
+    box-shadow: 0 0 15px var(--accent-glow);
+    transition: transform 0.3s var(--ease-out-expo);
 }
 
-.timeline-item:hover::before {
-    background-color: var(--text-color);
+.timeline-item:hover .timeline-dot {
+    transform: scale(1.5);
+}
+
+.timeline-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 2rem;
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.timeline-card:hover {
+    border-color: var(--accent-start);
+    transform: translateX(8px);
+    box-shadow: -4px 0 30px var(--accent-glow);
 }
 
 .timeline-header {
@@ -164,26 +194,34 @@ const experience = [{
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 1rem;
+    gap: 1rem;
 }
 
-.timeline-place {
-    font-size: 2rem;
+.timeline-title {
     font-family: var(--font-display);
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
     font-weight: 700;
-    text-transform: uppercase;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.2;
 }
 
 .timeline-year {
-    font-size: 1.2rem;
     font-family: var(--font-body);
-    color: var(--accent);
-    font-weight: bold;
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 600;
 }
 
 .timeline-desc {
-    font-size: 1.2rem;
-    font-family: var(--font-body);
-    color: #ccc;
+    font-size: 1.1rem;
+    color: var(--text-muted);
     margin-bottom: 1.5rem;
 }
 
@@ -193,26 +231,26 @@ const experience = [{
     gap: 0.5rem;
 }
 
-.brutal-tag {
+.skill-chip {
     font-family: var(--font-body);
-    font-size: 0.9rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    border: 1px solid #555;
-    color: #aaa;
+    font-size: 0.75rem;
+    font-weight: 600;
+    padding: 0.4rem 0.8rem;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
     transition: all 0.3s ease;
 }
 
-.timeline-item:hover .brutal-tag {
-    border-color: var(--accent);
-    color: var(--text-color);
+.timeline-card:hover .skill-chip {
+    border-color: var(--accent-start);
+    color: var(--text);
 }
 
-.mt-small { margin-top: 1rem; }
-
 @media (max-width: 768px) {
-    .grid-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .timeline-header { flex-direction: column; gap: 0.5rem; }
+    .timeline-header {
+        flex-direction: column;
+    }
 }
 </style>

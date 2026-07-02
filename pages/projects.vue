@@ -1,41 +1,55 @@
 <template>
-    <div class="avant-garde-page">
-        <NuxtLink :to="localePath('/')" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') || 'BACK TO HOME' }}
+    <div class="noir-page">
+        <NuxtLink :to="localePath('/')" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') }}
         </NuxtLink>
 
-        <section class="section projects-hero">
-            <h1 class="huge-text outline-text" data-aos="fade-down">{{ $t('projects') || 'SELECTED' }}</h1>
-            <h1 class="huge-text text-accent" data-aos="fade-up">WORKS.</h1>
+        <!-- Hero -->
+        <section class="page-hero">
+            <h1 class="hero-title">
+                <span class="outline-text" data-aos="fade-down">{{ $t('projects') }}</span>
+                <span class="text-accent" data-aos="fade-up">WORKS.</span>
+            </h1>
         </section>
 
-        <section class="section projects-list">
-            <div v-for="(project, index) in projects" :key="project.title" class="project-item" data-aos="fade-up">
-                <div class="project-number">{{ String(index + 1).padStart(2, '0') }}</div>
-                
-                <div class="project-content">
-                    <h2 class="project-title">{{ project.title }}</h2>
-                    <p class="project-year">{{ project.year }}</p>
-                    <p class="project-desc">{{ project.description }}</p>
-                    
-                    <div class="project-tech mt-small">
-                        <span v-for="tech in project.technologies" :key="tech" class="tech-tag">
-                            {{ tech }}
-                        </span>
+        <!-- Project List -->
+        <section class="section projects-section">
+            <div class="projects-grid">
+                <div v-for="(project, i) in projects" :key="project.title"
+                    class="project-card"
+                    data-aos="fade-up"
+                    :data-aos-delay="i * 100">
+
+                    <!-- Thumbnail -->
+                    <div class="project-img-wrap">
+                        <img :src="project.img_thumbnail_url" :alt="project.title" class="project-img" loading="lazy">
+                        <div class="img-overlay">
+                            <span class="overlay-number">0{{ i + 1 }}</span>
+                        </div>
                     </div>
-                    
-                    <div class="project-links mt-normal">
-                        <a v-if="project.link" :href="project.link" target="_blank" class="brutal-link">
-                            LIVE SITE <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                        </a>
-                        <a v-if="project.github" :href="project.github" target="_blank" class="brutal-link">
-                            GITHUB <i class="fa-brands fa-github"></i>
-                        </a>
+
+                    <!-- Info -->
+                    <div class="project-info">
+                        <div class="project-header">
+                            <h3 class="project-title">{{ project.title }}</h3>
+                            <span class="project-year">{{ project.year }}</span>
+                        </div>
+
+                        <p class="project-desc">{{ project.description }}</p>
+
+                        <div class="project-tech">
+                            <span v-for="tech in project.technologies" :key="tech" class="tech-chip">{{ tech }}</span>
+                        </div>
+
+                        <div class="project-links">
+                            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" class="project-link">
+                                <i class="fa-brands fa-github"></i> CODE
+                            </a>
+                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener" class="project-link">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="project-img-wrapper">
-                    <img :src="project.img_thumbnail_url" :alt="project.title" class="project-img" />
                 </div>
             </div>
         </section>
@@ -50,8 +64,8 @@ const localePath = useLocalePath()
 
 const projects = [
     {
-        title: "Personal Portfolio Website",
-        description: "A personal portfolio website built using Nuxt 3 and TypeScript to showcase my skills, experience, and projects.",
+        title: "Portfolio Weboldal",
+        description: "Personal developer portfolio website built with Nuxt 3 and TypeScript, featuring multi-language support and modern UI design.",
         github: "https://github.com/papandras/portfolio_nuxt",
         link: "https://papandras.hu/",
         year: "2023",
@@ -89,112 +103,174 @@ const projects = [
 </script>
 
 <style scoped>
-.avant-garde-page {
-    background-color: var(--bg-color);
+.noir-page {
+    background-color: var(--bg);
     min-height: 100vh;
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
 }
 
-.back-btn {
+.back-link {
     position: fixed;
     top: 2rem;
     left: 2rem;
     z-index: 100;
-    color: var(--text-color);
-    font-family: var(--font-body);
+    font-family: var(--font-display);
     font-weight: 600;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
+    color: var(--text);
     mix-blend-mode: difference;
     transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.back-btn:hover {
-    color: var(--accent);
+.back-link:hover { color: var(--accent-start); }
+
+.page-hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 var(--section-padding) 4rem;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(4rem, 12vw, 10rem);
+    letter-spacing: -0.04em;
+    line-height: 0.88;
 }
 
 .section {
-    padding: 2rem 5vw;
+    padding: 5rem var(--section-padding);
+    border-top: 1px solid var(--border);
 }
 
-.projects-hero {
-    min-height: 60vh;
+/* Projects Grid */
+.projects-grid {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding-top: 10rem;
-}
-
-.huge-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--text-color);
-}
-
-.projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 10rem;
-    max-width: 1600px;
+    gap: 6rem;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-.project-item {
+.project-card {
     display: grid;
-    grid-template-columns: 100px 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 3rem;
     align-items: center;
-    border-top: 2px solid #333;
-    padding-top: 4rem;
 }
 
-.project-number {
-    font-size: 4rem;
+.project-card:nth-child(even) {
+    direction: rtl;
+}
+
+.project-card:nth-child(even) > * {
+    direction: ltr;
+}
+
+/* Image */
+.project-img-wrap {
+    position: relative;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    transition: border-color 0.4s ease;
+}
+
+.project-card:hover .project-img-wrap {
+    border-color: var(--accent-start);
+}
+
+.project-img {
+    width: 100%;
+    aspect-ratio: 16 / 10;
+    object-fit: cover;
+    filter: grayscale(80%) brightness(0.7);
+    transition: all 0.6s var(--ease-out-expo);
+    transform: scale(1.05);
+}
+
+.project-card:hover .project-img {
+    filter: grayscale(0%) brightness(1);
+    transform: scale(1);
+}
+
+.img-overlay {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    z-index: 2;
+}
+
+.overlay-number {
     font-family: var(--font-display);
+    font-size: 3rem;
+    font-weight: 700;
     color: transparent;
-    -webkit-text-stroke: 1px #555;
-    align-self: flex-start;
+    -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
+}
+
+/* Info */
+.project-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
 }
 
 .project-title {
-    font-size: clamp(2rem, 4vw, 4rem);
     font-family: var(--font-display);
-    line-height: 1;
-    margin-bottom: 1rem;
-    text-transform: uppercase;
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1.1;
 }
 
 .project-year {
     font-family: var(--font-body);
-    color: var(--accent);
-    font-weight: bold;
-    font-size: 1.2rem;
-    margin-bottom: 2rem;
+    font-size: 0.85rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 700;
 }
 
 .project-desc {
-    font-family: var(--font-body);
-    font-size: 1.2rem;
-    line-height: 1.6;
-    color: #ccc;
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+}
+
+.project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
     margin-bottom: 2rem;
 }
 
-.tech-tag {
-    display: inline-block;
+.tech-chip {
     font-family: var(--font-body);
-    font-size: 0.8rem;
-    font-weight: bold;
-    padding: 0.5rem 1rem;
-    margin-right: 0.5rem;
-    margin-bottom: 0.5rem;
-    background-color: var(--text-color);
-    color: var(--bg-color);
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.4rem 0.8rem;
+    background: var(--bg-elevated);
+    border: 1px solid var(--border);
+    color: var(--text-muted);
     text-transform: uppercase;
+    letter-spacing: 0.08em;
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-chip {
+    border-color: var(--accent-start);
+    color: var(--text);
 }
 
 .project-links {
@@ -202,58 +278,36 @@ const projects = [
     gap: 2rem;
 }
 
-.brutal-link {
-    display: inline-flex;
+.project-link {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--text-muted);
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-color);
-    font-family: var(--font-body);
-    font-weight: 600;
-    font-size: 1.2rem;
-    letter-spacing: 0.1em;
-    border-bottom: 2px solid transparent;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
 }
 
-.brutal-link:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+.project-link:hover {
+    color: var(--accent-start);
+    border-bottom-color: var(--accent-start);
 }
-
-.project-img-wrapper {
-    width: 100%;
-    overflow: hidden;
-    border: 2px solid #333;
-    transition: border-color 0.3s ease;
-}
-
-.project-img {
-    width: 100%;
-    height: auto;
-    object-fit: cover;
-    aspect-ratio: 16 / 9;
-    filter: grayscale(100%);
-    transition: all 0.5s ease;
-    transform: scale(1.05);
-}
-
-.project-item:hover .project-img-wrapper {
-    border-color: var(--text-color);
-}
-
-.project-item:hover .project-img {
-    filter: grayscale(0%);
-    transform: scale(1);
-}
-
-.mt-small { margin-top: 1rem; }
-.mt-normal { margin-top: 3rem; }
 
 @media (max-width: 1024px) {
-    .project-item {
+    .project-card,
+    .project-card:nth-child(even) {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        direction: ltr;
     }
-    .project-number { display: none; }
+
+    .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
 }
 </style>

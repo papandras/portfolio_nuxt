@@ -1,60 +1,68 @@
 <template>
-    <div class="avant-garde-page">
-        <NuxtLink :to="localePath('/')" class="back-btn">
-            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') || 'BACK TO HOME' }}
+    <div class="noir-page">
+        <NuxtLink :to="localePath('/')" class="back-link">
+            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') }}
         </NuxtLink>
 
-        <section class="section about-hero">
-            <h1 class="huge-text outline-text" data-aos="fade-down">{{ $t('about') || 'ABOUT' }}</h1>
-            <h1 class="huge-text text-accent" data-aos="fade-up">ME.</h1>
+        <!-- Hero -->
+        <section class="page-hero">
+            <h1 class="hero-title">
+                <span class="outline-text" data-aos="fade-down">{{ $t('about') }}</span>
+                <span class="text-accent" data-aos="fade-up">ME.</span>
+            </h1>
         </section>
 
-        <section class="section about-content">
-            <div class="grid-layout">
-                <div class="col-left">
-                    <h2 class="section-title">{{ $t('about') || 'THE BIO' }}</h2>
+        <!-- Bio -->
+        <section class="section bio-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">01</span>
+                    <h2 class="section-label">BIO</h2>
                 </div>
-                <div class="col-right">
-                    <p class="big-paragraph">
-                        {{ $t('introduction') || 'Backend fejlesztő vagyok, főként Node.js alapú microservice architektúrákban szerzett tapasztalattal.' }}
+                <div class="split-content" data-aos="fade-up">
+                    <p class="big-text">
+                        {{ $t('introduction') }}
                     </p>
-                    <p class="standard-paragraph">
+                    <p class="body-text">
                         Dolgoztam <strong>GraphQL API</strong>-kon, <strong>PostgreSQL</strong> és <strong>MongoDB</strong>
                         adatbázisokkal. Részt vettem <strong>Symfony</strong> alapú legacy rendszerek fejlesztésében, és kisebb
                         <strong>React</strong> feladatok révén frontend tapasztalatot is szereztem.
                     </p>
-                    <p class="standard-paragraph">
+                    <p class="body-text">
                         Fontos számomra a minőségi, határidőre elvégzett munka és a folyamatos szakmai fejlődés.
                     </p>
-                    <div class="mt-normal">
-                        <a href="#" class="brutal-btn">
-                            <i class="fa-solid fa-download"></i> {{ $t('download_cv') || 'DOWNLOAD CV' }}
-                        </a>
-                    </div>
+                    <a href="#" class="btn-gradient mt-lg">
+                        <i class="fa-solid fa-download"></i> {{ $t('download_cv') }}
+                    </a>
                 </div>
             </div>
         </section>
 
+        <!-- Hobbies / Translations -->
         <section class="section hobbies-section">
-            <div class="grid-layout">
-                <div class="col-left">
-                    <h2 class="section-title">{{ $t('hobbies') || 'PROJECTS / HOBBIES' }}</h2>
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">02</span>
+                    <h2 class="section-label">{{ $t('hobbies') }}</h2>
                 </div>
-                <div class="col-right">
-                    <h3 class="mb-normal">{{ $t('game_translations') || 'GAME TRANSLATIONS' }}</h3>
-                    
-                    <div class="brutal-list">
-                        <div v-for="game in gameTranslations" :key="game.title" class="list-item">
-                            <div class="item-header">
-                                <h4>{{ game.title }}</h4>
-                                <span class="year">{{ game.year }}</span>
+                <div class="split-content">
+                    <h3 class="subsection-title" data-aos="fade-up">{{ $t('game_translations') }}</h3>
+
+                    <div class="card-list">
+                        <div v-for="game in gameTranslations" :key="game.title" class="hobby-card" data-aos="fade-up">
+                            <div class="card-header">
+                                <h4 class="card-title">{{ game.title }}</h4>
+                                <span class="card-year">{{ game.year }}</span>
                             </div>
-                            <p class="standard-paragraph mt-small">{{ game.description }}</p>
-                            <p class="status-text mt-small">{{ $t('status') || 'STATUS' }}: <span class="text-accent">{{ $t(game.statusKey) || game.status }}</span></p>
-                            
-                            <a v-if="game.link" :href="game.link" target="_blank" class="brutal-link mt-small">
-                                VIEW DETAILS <i class="fa-solid fa-arrow-up-right-from-square"></i>
-                            </a>
+                            <p class="card-desc">{{ game.description }}</p>
+                            <div class="card-footer">
+                                <span class="card-status">
+                                    {{ $t('status') }}: <span class="text-accent">{{ $t(game.statusKey) }}</span>
+                                </span>
+                                <a v-if="game.link" :href="game.link" target="_blank" rel="noopener" class="card-link">
+                                    VIEW <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -73,187 +81,220 @@ const gameTranslations = [{
     title: 'Assassin\'s Creed Odyssey',
     description: 'The Lost Tales of Greece, Crossover Story, Legacy of the First Blade és The Fate of Atlantis kiegészítők magyarítása.',
     link: 'https://magyaritasok.hu/games/assassins-creed-odyssey',
-    status: 'COMPLETED',
     statusKey: 'completed',
-    year: "2020 - 2022"
-},
-{
+    year: '2020 — 2022'
+}, {
     title: 'Assassin\'s Creed Valhalla',
     description: 'Alapjáték, Crossover Story, The Last Chapter és a Dawn of Ragnarök kiegészítő magyarítása.',
     link: 'https://magyaritasok.hu/games/assassins-creed-valhalla',
-    status: 'IN PROGRESS',
     statusKey: 'in_progress',
-    year: "2022 - PRESENT"
-},
-{
+    year: '2022 — PRESENT'
+}, {
     title: 'Assassin\'s Creed Shadows',
     description: 'Future project.',
     link: null,
-    status: 'FUTURE',
     statusKey: 'futured',
-    year: "TBA"
+    year: 'TBA'
 }]
 </script>
 
 <style scoped>
-.avant-garde-page {
-    background-color: var(--bg-color);
+.noir-page {
+    background-color: var(--bg);
     min-height: 100vh;
-    padding-bottom: 5rem;
+    padding-bottom: 6rem;
 }
 
-.back-btn {
+.back-link {
     position: fixed;
     top: 2rem;
     left: 2rem;
     z-index: 100;
-    color: var(--text-color);
-    font-family: var(--font-body);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    mix-blend-mode: difference;
-    transition: color 0.3s ease;
-}
-
-.back-btn:hover {
-    color: var(--accent);
-}
-
-.section {
-    padding: 2rem 5vw;
-}
-
-.about-hero {
-    min-height: 60vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding-top: 10rem;
-}
-
-.huge-text {
-    font-size: clamp(3rem, 10vw, 8rem);
-    letter-spacing: -0.04em;
-    line-height: 0.9;
-}
-
-.outline-text {
-    color: transparent;
-    -webkit-text-stroke: 2px var(--text-color);
-}
-
-.grid-layout {
-    display: grid;
-    grid-template-columns: 1fr 2fr;
-    gap: 4rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-}
-
-.section-title {
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    font-family: var(--font-body);
-    font-weight: 500;
-    color: var(--accent);
-}
-
-.big-paragraph {
-    font-size: clamp(1.5rem, 3vw, 2.5rem);
-    line-height: 1.3;
     font-family: var(--font-display);
     font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    color: var(--text);
+    mix-blend-mode: difference;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.back-link:hover {
+    color: var(--accent-start);
+}
+
+/* Hero */
+.page-hero {
+    min-height: 55vh;
+    display: flex;
+    align-items: flex-end;
+    padding: 0 var(--section-padding) 4rem;
+}
+
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    font-size: clamp(4rem, 12vw, 10rem);
+    letter-spacing: -0.04em;
+    line-height: 0.88;
+}
+
+/* Section */
+.section {
+    padding: 5rem var(--section-padding);
+}
+
+.split-label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.section-number {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.15em;
+}
+
+.section-label {
+    font-size: 1.1rem;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.big-text {
+    font-family: var(--font-display);
+    font-size: clamp(1.4rem, 2.5vw, 2.2rem);
+    font-weight: 600;
+    line-height: 1.3;
     margin-bottom: 2rem;
 }
 
-.standard-paragraph {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    font-family: var(--font-body);
-    color: #ccc;
+.body-text {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    color: var(--text-muted);
     margin-bottom: 1.5rem;
 }
 
-.brutal-btn {
-    display: inline-block;
-    padding: 1rem 2rem;
-    background-color: transparent;
-    border: 2px solid currentColor;
-    color: inherit;
-    font-family: var(--font-body);
+.body-text strong {
+    color: var(--text);
     font-weight: 600;
-    font-size: 1rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    transition: all 0.3s ease;
 }
 
-.brutal-btn:hover {
-    background-color: var(--accent);
-    color: var(--bg-color);
-    border-color: var(--accent);
+.mt-lg { margin-top: 3rem; }
+
+/* Hobbies */
+.bio-section {
+    border-top: 1px solid var(--border);
 }
 
-.brutal-list {
+.hobbies-section {
+    border-top: 1px solid var(--border);
+}
+
+.subsection-title {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 2rem;
+}
+
+.card-list {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    border-top: 2px solid #333;
-    padding-top: 2rem;
+    gap: 1.5rem;
 }
 
-.list-item {
-    border-bottom: 2px solid #333;
-    padding-bottom: 2rem;
+.hobby-card {
+    border: 1px solid var(--border);
+    padding: 2rem;
+    background: var(--bg-elevated);
+    transition: all 0.4s var(--ease-out-expo);
 }
 
-.item-header {
+.hobby-card:hover {
+    border-color: var(--accent-start);
+    transform: translateX(8px);
+    box-shadow: -4px 0 20px var(--accent-glow);
+}
+
+.card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.card-title {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.card-year {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    color: var(--text-dim);
+}
+
+.card-desc {
+    font-size: 1rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.item-header h4 {
-    font-size: 1.5rem;
+.card-status {
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+.card-link {
     font-family: var(--font-display);
-}
-
-.year {
-    font-family: var(--font-body);
-    color: #888;
-}
-
-.status-text {
-    font-family: var(--font-body);
-    font-weight: bold;
-    font-size: 0.9rem;
+    font-weight: 600;
+    font-size: 0.85rem;
     letter-spacing: 0.1em;
-}
-
-.brutal-link {
-    display: inline-flex;
+    color: var(--text-muted);
+    display: flex;
     align-items: center;
     gap: 0.5rem;
-    color: var(--text-color);
-    font-family: var(--font-body);
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    border-bottom: 1px solid transparent;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease;
 }
 
-.brutal-link:hover {
-    color: var(--accent);
-    border-bottom-color: var(--accent);
+.card-link:hover {
+    color: var(--accent-start);
 }
-
-.mt-small { margin-top: 1rem; }
-.mt-normal { margin-top: 3rem; }
-.mb-normal { margin-bottom: 2rem; font-size: 2rem; font-family: var(--font-display); }
 
 @media (max-width: 768px) {
-    .grid-layout { grid-template-columns: 1fr; gap: 2rem; }
-    .item-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .card-footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
 }
 </style>

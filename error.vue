@@ -1,89 +1,50 @@
 <template>
-    <div class="error-container">
+    <div class="error-page">
+        <div class="grain-overlay"></div>
         <div class="error-content">
-            <h1 v-if="error.statusCode === 404">
-                404 - Az oldal nem található
+            <h1 class="error-code">
+                <span class="outline-text-accent">4</span>
+                <span class="text-accent">0</span>
+                <span class="outline-text-accent">4</span>
             </h1>
-            <h1 v-else>
-                {{ error.statusCode }} - Hiba történt
-            </h1>
-            <p class="error-message">Sajnáljuk, valami hiba lépett fel. Próbálja meg később!</p>
-            <NuxtLink to="/" class="error-button">
-                Vissza a főoldalra
+            <p class="error-msg">Az oldal nem található</p>
+            <NuxtLink to="/" class="btn-outline">
+                <i class="fa-solid fa-arrow-left"></i> VISSZA A FŐOLDALRA
             </NuxtLink>
         </div>
     </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 defineProps({
     error: Object
 })
 </script>
 
 <style scoped>
-.error-container {
-    font-family: 'Poppins', sans-serif;
+.error-page {
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    text-align: center;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    animation: fadeIn 2s ease-in-out;
+    background-color: var(--bg);
 }
 
-/* Letisztult tartalom-konténer */
 .error-content {
-    padding: 2rem 3rem;
-    max-width: 90%;
-    box-sizing: border-box;
+    text-align: center;
 }
 
-/* Cím stílusa */
-h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-    color: var(--text-color);
-}
-
-/* Leírás stílusa */
-.error-message {
-    font-size: 1rem;
-    font-weight: 400;
+.error-code {
+    font-size: clamp(8rem, 20vw, 20rem);
+    letter-spacing: -0.04em;
+    line-height: 0.85;
     margin-bottom: 2rem;
-    opacity: 0.8;
 }
 
-/* Elegáns gomb stílusa */
-.error-button {
-    display: inline-block;
-    padding: 0.75rem 1.5rem;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--text-color);
-    background-color: var(--bg-color);
-    border: 1px solid var(--text-color);
-    text-decoration: none;
-    border-radius: 4px;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.error-button:hover {
-    border-radius: 8px;
-}
-
-/* Animációk */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-    }
-
-    to {
-        opacity: 1;
-    }
+.error-msg {
+    font-family: var(--font-body);
+    font-size: 1.5rem;
+    color: var(--text-muted);
+    margin-bottom: 3rem;
 }
 </style>

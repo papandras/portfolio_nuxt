@@ -1,10 +1,13 @@
 <template>
     <div>
-        <!-- Global Cursor -->
-        <div class="global-custom-cursor" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
-        
-        <!-- Global Navigation -->
-        <MinimalHeader />
+        <!-- Custom Cursor -->
+        <div class="custom-cursor" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
+
+        <!-- Grain Overlay -->
+        <div class="grain-overlay"></div>
+
+        <!-- Navigation Overlay -->
+        <NavOverlay />
 
         <!-- Page Content -->
         <slot />
@@ -23,7 +26,6 @@ const updateCursor = (e: MouseEvent) => {
 }
 
 onMounted(() => {
-    // Only track if device has a fine pointer (mouse) to save resources
     if (window.matchMedia("(pointer: fine)").matches) {
         window.addEventListener('mousemove', updateCursor)
     }
@@ -35,5 +37,5 @@ onUnmounted(() => {
 </script>
 
 <style>
-/* Base layout styles if any */
+/* Layout base */
 </style>
