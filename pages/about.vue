@@ -1,150 +1,259 @@
 <template>
-    <div class="page-section" id="about-section">
-        <h1>{{ $t('about') }}</h1>
-        <SiteSectionContentAbout />
+    <div class="avant-garde-page">
+        <NuxtLink :to="localePath('/')" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i> {{ $t('home') || 'BACK TO HOME' }}
+        </NuxtLink>
 
-        <div id="cv-download">
-            <i class="fa-solid fa-download"></i>
-            <p>{{ $t('download_cv') }}</p>
-        </div>
+        <section class="section about-hero">
+            <h1 class="huge-text outline-text" data-aos="fade-down">{{ $t('about') || 'ABOUT' }}</h1>
+            <h1 class="huge-text text-accent" data-aos="fade-up">ME.</h1>
+        </section>
 
-        <h2>{{ $t('hobbies') }}</h2>
-
-        <h3>{{ $t('game_translations') }}</h3>
-        <p></p>
-        <div class="game-list">
-            <div class="game-item" v-for="game in gameTranslations" :key="game.title">
-                <div>
-                    <img :src="game.img" :alt="game.title" class="game-image" />
-                    <h4 class="game-title">{{ game.title }}</h4>
-                    <p v-if="game.status" class="game-status">{{ $t('status') }}: {{ $t(game.status) }}</p>
-                    <p v-if="game.year">{{ $t('year') }}: {{ game.year }}</p>
-                    <p class="game-description">{{ $t(game.description) }}</p>
-
-                    <a v-if="game.link" :href="game.link" target="_blank" rel="noopener noreferrer" class="link">
-                        <div>
-                            <i class="fa-solid fa-arrow-up-right-from-square"></i>Magyarítás adatlapja
-                        </div>
-                    </a>
+        <section class="section about-content">
+            <div class="grid-layout">
+                <div class="col-left">
+                    <h2 class="section-title">{{ $t('about') || 'THE BIO' }}</h2>
+                </div>
+                <div class="col-right">
+                    <p class="big-paragraph">
+                        {{ $t('introduction') || 'Backend fejlesztő vagyok, főként Node.js alapú microservice architektúrákban szerzett tapasztalattal.' }}
+                    </p>
+                    <p class="standard-paragraph">
+                        Dolgoztam <strong>GraphQL API</strong>-kon, <strong>PostgreSQL</strong> és <strong>MongoDB</strong>
+                        adatbázisokkal. Részt vettem <strong>Symfony</strong> alapú legacy rendszerek fejlesztésében, és kisebb
+                        <strong>React</strong> feladatok révén frontend tapasztalatot is szereztem.
+                    </p>
+                    <p class="standard-paragraph">
+                        Fontos számomra a minőségi, határidőre elvégzett munka és a folyamatos szakmai fejlődés.
+                    </p>
+                    <div class="mt-normal">
+                        <a href="#" class="brutal-btn">
+                            <i class="fa-solid fa-download"></i> {{ $t('download_cv') || 'DOWNLOAD CV' }}
+                        </a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <section class="section hobbies-section">
+            <div class="grid-layout">
+                <div class="col-left">
+                    <h2 class="section-title">{{ $t('hobbies') || 'PROJECTS / HOBBIES' }}</h2>
+                </div>
+                <div class="col-right">
+                    <h3 class="mb-normal">{{ $t('game_translations') || 'GAME TRANSLATIONS' }}</h3>
+                    
+                    <div class="brutal-list">
+                        <div v-for="game in gameTranslations" :key="game.title" class="list-item">
+                            <div class="item-header">
+                                <h4>{{ game.title }}</h4>
+                                <span class="year">{{ game.year }}</span>
+                            </div>
+                            <p class="standard-paragraph mt-small">{{ game.description }}</p>
+                            <p class="status-text mt-small">{{ $t('status') || 'STATUS' }}: <span class="text-accent">{{ $t(game.statusKey) || game.status }}</span></p>
+                            
+                            <a v-if="game.link" :href="game.link" target="_blank" class="brutal-link mt-small">
+                                VIEW DETAILS <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </div>
 </template>
 
 <script setup lang="ts">
-import { definePageMeta } from '#imports'
+import { definePageMeta, useLocalePath } from '#imports'
 
-definePageMeta({
-    layout: 'subpage'
-})
+definePageMeta({ layout: 'default' })
+const localePath = useLocalePath()
 
 const gameTranslations = [{
     title: 'Assassin\'s Creed Odyssey',
     description: 'The Lost Tales of Greece, Crossover Story, Legacy of the First Blade és The Fate of Atlantis kiegészítők magyarítása.',
-    img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/812140/header.jpg?t=1758656673',
     link: 'https://magyaritasok.hu/games/assassins-creed-odyssey',
-    status: 'completed',
+    status: 'COMPLETED',
+    statusKey: 'completed',
     year: "2020 - 2022"
 },
 {
     title: 'Assassin\'s Creed Valhalla',
     description: 'Alapjáték, Crossover Story, The Last Chapter és a Dawn of Ragnarök kiegészítő magyarítása.',
-    img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/2208920/header.jpg?t=1754572990',
     link: 'https://magyaritasok.hu/games/assassins-creed-valhalla',
-    status: 'in_progress',
-    year: "2022 - jelenleg is"
+    status: 'IN PROGRESS',
+    statusKey: 'in_progress',
+    year: "2022 - PRESENT"
 },
 {
     title: 'Assassin\'s Creed Shadows',
-    description: '',
-    img: 'https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/3159330/ead4c06eb30d88cd4a231d0a3550ca055b6f89c2/header_alt_assets_0.jpg',
+    description: 'Future project.',
     link: null,
-    status: 'futured'
-}
-];
+    status: 'FUTURE',
+    statusKey: 'futured',
+    year: "TBA"
+}]
 </script>
 
 <style scoped>
-.game-list {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 2rem;
+.avant-garde-page {
+    background-color: var(--bg-color);
+    min-height: 100vh;
+    padding-bottom: 5rem;
 }
 
-.game-item {
-    border-radius: 8px;
-    overflow: hidden;
-    transition: all 0.3s ease;
-    cursor: pointer;
-    width: max(400px, 20%);
-}
-
-.game-item:hover {
-    transform: scale(1.05);
-}
-
-.game-image {
-    width: 100%;
-    height: auto;
-    filter: grayscale(50%);
-    /* mix-blend-mode: luminosity; */
-}
-
-.game-image:hover {
-    filter: grayscale(0%);
-    /* mix-blend-mode: normal; */
-}
-
-.game-title {
-    font-size: 1.2rem;
-}
-
-.game-status {
-    font-style: italic;
-    color: var(--secondary-color);
-}
-
-.link {
-    text-decoration: none;
+.back-btn {
+    position: fixed;
+    top: 2rem;
+    left: 2rem;
+    z-index: 100;
     color: var(--text-color);
-    font-weight: bold;
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    mix-blend-mode: difference;
     transition: color 0.3s ease;
-    display: inline-block;
-    margin-top: .5rem;
-    text-align: center;
 }
 
-.link:hover {
-    color: var(--secondary-color);
+.back-btn:hover {
+    color: var(--accent);
 }
 
-.link div {
+.section {
+    padding: 2rem 5vw;
+}
+
+.about-hero {
+    min-height: 60vh;
     display: flex;
-    align-items: center;
+    flex-direction: column;
     justify-content: center;
-    gap: .5rem;
+    padding-top: 10rem;
 }
 
-.game-description {
-    text-align: justify;
+.huge-text {
+    font-size: clamp(3rem, 10vw, 8rem);
+    letter-spacing: -0.04em;
+    line-height: 0.9;
 }
 
-#cv-download {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    margin-top: 1rem;
-    cursor: pointer;
-    width: fit-content;
-    padding: .5rem 1rem;
-    border: 1px solid var(--text-color);
-    border-radius: 8px;
-    transition: background-color 0.3s ease, border-radius 0.3s ease;
+.outline-text {
+    color: transparent;
+    -webkit-text-stroke: 2px var(--text-color);
 }
 
-#cv-download:hover {
-    background-color: var(--text-color);
+.grid-layout {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 4rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.section-title {
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    font-family: var(--font-body);
+    font-weight: 500;
+    color: var(--accent);
+}
+
+.big-paragraph {
+    font-size: clamp(1.5rem, 3vw, 2.5rem);
+    line-height: 1.3;
+    font-family: var(--font-display);
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
+.standard-paragraph {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-family: var(--font-body);
+    color: #ccc;
+    margin-bottom: 1.5rem;
+}
+
+.brutal-btn {
+    display: inline-block;
+    padding: 1rem 2rem;
+    background-color: transparent;
+    border: 2px solid currentColor;
+    color: inherit;
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+.brutal-btn:hover {
+    background-color: var(--accent);
     color: var(--bg-color);
+    border-color: var(--accent);
+}
+
+.brutal-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border-top: 2px solid #333;
+    padding-top: 2rem;
+}
+
+.list-item {
+    border-bottom: 2px solid #333;
+    padding-bottom: 2rem;
+}
+
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.item-header h4 {
+    font-size: 1.5rem;
+    font-family: var(--font-display);
+}
+
+.year {
+    font-family: var(--font-body);
+    color: #888;
+}
+
+.status-text {
+    font-family: var(--font-body);
+    font-weight: bold;
+    font-size: 0.9rem;
+    letter-spacing: 0.1em;
+}
+
+.brutal-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-color);
+    font-family: var(--font-body);
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    border-bottom: 1px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.brutal-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+}
+
+.mt-small { margin-top: 1rem; }
+.mt-normal { margin-top: 3rem; }
+.mb-normal { margin-bottom: 2rem; font-size: 2rem; font-family: var(--font-display); }
+
+@media (max-width: 768px) {
+    .grid-layout { grid-template-columns: 1fr; gap: 2rem; }
+    .item-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
 }
 </style>
