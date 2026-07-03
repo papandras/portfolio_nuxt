@@ -284,17 +284,83 @@ const gameTranslations = [{
     color: var(--accent-start);
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .page-hero {
+        min-height: 40vh;
+        padding-top: 6rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .back-link {
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 35vh;
+        padding: 6rem var(--section-padding) 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+
+    .section {
+        padding: 3rem var(--section-padding);
+    }
+
+    .big-text {
+        font-size: 1.2rem;
+    }
+
+    .body-text {
+        font-size: 1rem;
+    }
+
+    .subsection-title {
+        font-size: 1.5rem;
+    }
+
+    .hobby-card {
+        padding: 1.5rem;
+    }
+
+    .hobby-card:hover {
+        transform: translateX(4px);
+    }
+
     .card-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
     }
 
+    .card-title {
+        font-size: 1.2rem;
+    }
+
+    .card-desc {
+        font-size: 0.9rem;
+    }
+
     .card-footer {
         flex-direction: column;
         align-items: flex-start;
         gap: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .hobby-card {
+        padding: 1.2rem;
+    }
+
+    .card-title {
+        font-size: 1.1rem;
     }
 }
 </style>

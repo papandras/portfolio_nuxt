@@ -302,9 +302,71 @@ const sendEmail = async () => {
     opacity: 0;
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .page-hero {
+        min-height: 35vh;
+        padding-top: 6rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .back-link {
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 30vh;
+        padding: 5rem var(--section-padding) 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(2rem, 8vw, 4rem);
+    }
+
+    .section {
+        padding: 3rem var(--section-padding);
+    }
+
     .contact-links {
-        margin-bottom: 3rem;
+        margin-bottom: 2rem;
+        gap: 1rem;
+    }
+
+    .contact-link-item {
+        font-size: 1rem;
+    }
+
+    .field-input,
+    .field-textarea {
+        font-size: 1rem;
+        padding: 0.6rem 0;
+    }
+
+    .field-label {
+        font-size: 0.75rem;
+    }
+
+    .contact-form {
+        gap: 2rem;
+    }
+
+    .submit-btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-title {
+        font-size: clamp(1.8rem, 7vw, 3rem);
+    }
+
+    .contact-link-item {
+        font-size: 0.9rem;
     }
 }
 </style>

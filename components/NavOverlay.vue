@@ -277,4 +277,62 @@ const switchLang = (lang: string) => {
         transform: translateY(0);
     }
 }
+
+/* ---- Responsive ---- */
+@media (max-width: 768px) {
+    .menu-toggle {
+        top: 1.2rem;
+        right: 1.2rem;
+        padding: 0.8rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .nav-overlay {
+        align-items: flex-start;
+        overflow-y: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-overlay-inner {
+        padding: 5rem var(--section-padding) 3rem;
+        gap: 3rem;
+    }
+
+    .nav-link {
+        padding: 0.6rem 0;
+        gap: 1rem;
+    }
+
+    .nav-text {
+        font-size: clamp(1.8rem, 8vw, 3rem);
+    }
+
+    .nav-number {
+        font-size: 0.7rem;
+        min-width: 1.5rem;
+    }
+
+    .nav-link:hover .nav-text,
+    .nav-link.router-link-exact-active .nav-text {
+        transform: translateX(0.5rem);
+    }
+
+    .nav-bottom {
+        padding-top: 1rem;
+    }
+
+    .lang-btn {
+        font-size: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-text {
+        font-size: clamp(1.5rem, 7vw, 2.2rem);
+    }
+
+    .nav-links {
+        gap: 0.1rem;
+    }
+}
 </style>

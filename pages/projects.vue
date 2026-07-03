@@ -297,17 +297,92 @@ const projects = [
     border-bottom-color: var(--accent-start);
 }
 
+/* Responsive */
+
 @media (max-width: 1024px) {
+    .page-hero {
+        min-height: 40vh;
+        padding-top: 6rem;
+    }
+
     .project-card,
     .project-card:nth-child(even) {
         grid-template-columns: 1fr;
         direction: ltr;
     }
 
+    .projects-grid {
+        gap: 4rem;
+    }
+
     .project-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .back-link {
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 35vh;
+        padding: 6rem var(--section-padding) 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+
+    .section {
+        padding: 3rem var(--section-padding);
+    }
+
+    .projects-grid {
+        gap: 3rem;
+    }
+
+    .project-card {
+        gap: 1.5rem;
+    }
+
+    .project-title {
+        font-size: 1.3rem;
+    }
+
+    .project-desc {
+        font-size: 0.9rem;
+    }
+
+    .project-img {
+        filter: grayscale(0%) brightness(1);
+    }
+
+    .overlay-number {
+        font-size: 2rem;
+    }
+
+    .tech-chip {
+        font-size: 0.65rem;
+        padding: 0.3rem 0.6rem;
+    }
+
+    .project-links {
+        gap: 1.5rem;
+    }
+
+    .project-link {
+        font-size: 0.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .projects-grid {
+        gap: 2.5rem;
     }
 }
 </style>

@@ -248,9 +248,88 @@ const experience = [{
     color: var(--text);
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .page-hero {
+        min-height: 40vh;
+        padding-top: 6rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .back-link {
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 35vh;
+        padding: 6rem var(--section-padding) 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+
+    .section {
+        padding: 3rem var(--section-padding);
+    }
+
+    .timeline {
+        padding-left: 2rem;
+    }
+
+    .timeline::before {
+        left: 4px;
+    }
+
+    .timeline-dot {
+        left: -2rem;
+        width: 10px;
+        height: 10px;
+    }
+
+    .timeline-card {
+        padding: 1.5rem;
+    }
+
+    .timeline-card:hover {
+        transform: translateX(4px);
+    }
+
     .timeline-header {
         flex-direction: column;
+    }
+
+    .timeline-title {
+        font-size: 1.1rem;
+    }
+
+    .timeline-desc {
+        font-size: 1rem;
+    }
+
+    .skill-chip {
+        font-size: 0.7rem;
+        padding: 0.3rem 0.6rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .timeline {
+        padding-left: 1.5rem;
+    }
+
+    .timeline-dot {
+        left: -1.5rem;
+        width: 8px;
+        height: 8px;
+    }
+
+    .timeline-card {
+        padding: 1.2rem;
     }
 }
 </style>

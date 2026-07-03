@@ -180,10 +180,57 @@ const allSkills = [
     color: var(--text);
 }
 
+/* Responsive */
+
+@media (max-width: 1024px) {
+    .page-hero {
+        min-height: 40vh;
+        padding-top: 6rem;
+    }
+}
+
 @media (max-width: 768px) {
+    .back-link {
+        top: 1.2rem;
+        left: 1.2rem;
+        font-size: 0.75rem;
+    }
+
+    .page-hero {
+        min-height: 35vh;
+        padding: 6rem var(--section-padding) 2rem;
+    }
+
+    .hero-title {
+        font-size: clamp(3rem, 12vw, 5rem);
+    }
+
+    .section {
+        padding: 3rem var(--section-padding);
+    }
+
+    .skills-cloud {
+        gap: 0.6rem;
+    }
+
     .skill-tag {
         padding: 0.5rem 1rem;
-        font-size: 1.2rem;
+        font-size: 1rem;
+    }
+
+    .skill-tag:hover {
+        transform: scale(1.03);
+    }
+}
+
+@media (max-width: 480px) {
+    .skill-tag {
+        padding: 0.4rem 0.8rem;
+        font-size: 0.9rem;
+    }
+
+    .skills-cloud {
+        gap: 0.5rem;
     }
 }
 </style>
