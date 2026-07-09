@@ -13,6 +13,10 @@
                     <span class="name-line text-accent">ANDRÁS</span>
                 </h1>
 
+                <p class="hero-subtitle" data-aos="fade-up" data-aos-delay="100" data-aos-duration="800">
+                    {{ $t('role') }} <span class="subtitle-dim">· {{ $t('role_subtitle') }}</span>
+                </p>
+
                 <p class="hero-role" data-aos="fade-up" data-aos-delay="200" data-aos-duration="800">
                     {{ $t('introduction') }}
                 </p>
@@ -180,6 +184,22 @@ const localePath = useLocalePath()
     letter-spacing: -0.04em;
     line-height: 0.88;
     font-weight: 700;
+}
+
+.hero-subtitle {
+    font-family: var(--font-display);
+    font-size: clamp(1rem, 1.8vw, 1.3rem);
+    font-weight: 700;
+    margin-top: 2rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle-dim {
+    font-weight: 400;
+    -webkit-text-fill-color: var(--text-muted);
 }
 
 .hero-role {

@@ -12,20 +12,22 @@
             </h1>
         </section>
 
-        <!-- Skills -->
-        <section class="section skills-section">
+        <!-- Categorized Skills -->
+        <section v-for="(cat, ci) in categories" :key="cat.key"
+            class="section skill-section"
+            :class="{ 'alt-bg': ci % 2 === 1 }">
             <div class="grid-split">
                 <div class="split-label" data-aos="fade-right">
-                    <span class="section-number">01</span>
-                    <h2 class="section-label">{{ $t('skills') }}</h2>
+                    <span class="section-number">{{ String(ci + 1).padStart(2, '0') }}</span>
+                    <h2 class="section-label">{{ $t(cat.key) }}</h2>
                 </div>
                 <div class="split-content">
                     <div class="skills-cloud">
-                        <span v-for="(skill, i) in allSkills" :key="skill.name"
+                        <span v-for="(skill, i) in cat.items" :key="skill.name"
                             class="skill-tag"
                             :class="{ 'featured': skill.featured }"
                             data-aos="zoom-in"
-                            :data-aos-delay="i * 40">
+                            :data-aos-delay="i * 30">
                             {{ skill.name }}
                         </span>
                     </div>
@@ -41,47 +43,133 @@ import { definePageMeta, useLocalePath } from '#imports'
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
 
-const allSkills = [
-    // Primary Backend
-    { name: 'Node.js', featured: true },
-    { name: 'GraphQL', featured: true },
-    { name: 'Apollo Federation', featured: true },
-    { name: 'TypeScript', featured: true },
-    { name: 'PHP', featured: true },
-    { name: 'Symfony', featured: false },
-    { name: 'Express', featured: false },
-    // Search & Data
-    { name: 'Elasticsearch', featured: true },
-    { name: 'MARC21', featured: false },
-    { name: 'Prisma', featured: true },
-    // Databases
-    { name: 'PostgreSQL', featured: true },
-    { name: 'MongoDB', featured: false },
-    { name: 'MySQL', featured: false },
-    { name: 'Redis', featured: false },
-    // Messaging / Workflow
-    { name: 'RabbitMQ', featured: false },
-    { name: 'Camunda', featured: false },
-    // Frontend
-    { name: 'React', featured: true },
-    { name: 'Next.js', featured: false },
-    { name: 'Material-UI', featured: false },
-    { name: 'Vue.js', featured: false },
-    { name: 'Nuxt', featured: false },
-    { name: 'Gatsby', featured: false },
-    // CMS
-    { name: 'WordPress', featured: true },
-    // Auth / Ops
-    { name: 'Keycloak', featured: false },
-    { name: 'Docker', featured: false },
-    { name: 'Git', featured: true },
-    { name: 'Electron', featured: false },
-    // AI
-    { name: 'AI-Assisted Dev', featured: true },
-    // Web Standards
-    { name: 'HTML & CSS', featured: false },
-    { name: 'REST APIs', featured: false },
-    { name: 'WCAG', featured: false },
+const categories = [
+    {
+        key: 'cat_languages',
+        items: [
+            { name: 'JavaScript', featured: true },
+            { name: 'Node.js', featured: true },
+            { name: 'PHP', featured: true },
+            { name: 'TypeScript', featured: true },
+            { name: 'SQL', featured: false },
+        ]
+    },
+    {
+        key: 'cat_backend',
+        items: [
+            { name: 'Apollo GraphQL Federation', featured: true },
+            { name: 'Apollo Server', featured: true },
+            { name: 'Express', featured: false },
+            { name: 'GraphQL', featured: true },
+            { name: 'REST', featured: false },
+            { name: 'Symfony', featured: true },
+        ]
+    },
+    {
+        key: 'cat_search',
+        items: [
+            { name: 'Elasticsearch', featured: true },
+            { name: 'Elastica', featured: false },
+            { name: 'Query DSL', featured: false },
+            { name: 'MARC21', featured: true },
+            { name: 'HUNMARC', featured: false },
+        ]
+    },
+    {
+        key: 'cat_orm',
+        items: [
+            { name: 'Prisma', featured: true },
+            { name: 'MongoDB Driver', featured: false },
+            { name: 'Doctrine ODM', featured: false },
+            { name: 'GraphQL Datasources', featured: false },
+        ]
+    },
+    {
+        key: 'cat_databases',
+        items: [
+            { name: 'PostgreSQL', featured: true },
+            { name: 'MySQL', featured: false },
+            { name: 'MongoDB', featured: true },
+            { name: 'Elasticsearch', featured: false },
+            { name: 'Redis (ioredis)', featured: false },
+        ]
+    },
+    {
+        key: 'cat_messaging',
+        items: [
+            { name: 'RabbitMQ', featured: true },
+            { name: 'amqplib / rascal', featured: false },
+            { name: 'Camunda', featured: true },
+        ]
+    },
+    {
+        key: 'cat_frontend',
+        items: [
+            { name: 'React', featured: true },
+            { name: 'Material-UI (MUI)', featured: true },
+            { name: 'Apollo Client', featured: false },
+            { name: 'Next.js', featured: true },
+            { name: 'Gatsby', featured: false },
+            { name: 'React Native', featured: false },
+            { name: 'Electron', featured: true },
+            { name: 'Vue.js', featured: false },
+            { name: 'Nuxt', featured: false },
+            { name: 'Lexical', featured: false },
+            { name: 'Final Form', featured: false },
+            { name: 'i18next', featured: false },
+        ]
+    },
+    {
+        key: 'cat_cms',
+        items: [
+            { name: 'WordPress', featured: true },
+            { name: 'PHP Themes', featured: false },
+            { name: 'Custom Plugins', featured: false },
+        ]
+    },
+    {
+        key: 'cat_auth',
+        items: [
+            { name: 'Keycloak', featured: true },
+            { name: 'JWT', featured: false },
+            { name: 'graphql-shield', featured: false },
+        ]
+    },
+    {
+        key: 'cat_storage',
+        items: [
+            { name: 'MinIO / S3', featured: false },
+            { name: 'PDF (react-pdf, pdf-merger)', featured: false },
+            { name: 'ExcelJS', featured: true },
+            { name: 'xlsx', featured: false },
+            { name: 'ePub', featured: false },
+        ]
+    },
+    {
+        key: 'cat_integrations',
+        items: [
+            { name: 'Billingo', featured: true },
+            { name: 'Nodemailer', featured: false },
+            { name: 'GTM / Gemius', featured: false },
+        ]
+    },
+    {
+        key: 'cat_ops',
+        items: [
+            { name: 'Docker', featured: true },
+            { name: 'New Relic', featured: false },
+            { name: 'Git / Bitbucket', featured: true },
+            { name: 'GraphQL Code Generator', featured: false },
+            { name: 'OpenAPI / YAML', featured: false },
+        ]
+    },
+    {
+        key: 'cat_ai',
+        items: [
+            { name: 'Claude Code', featured: true },
+            { name: 'AI-Assisted Workflow', featured: true },
+        ]
+    },
 ]
 </script>
 
@@ -127,8 +215,12 @@ const allSkills = [
 }
 
 .section {
-    padding: 5rem var(--section-padding);
+    padding: 3.5rem var(--section-padding);
     border-top: 1px solid var(--border);
+}
+
+.alt-bg {
+    background: var(--bg-elevated);
 }
 
 .split-label {
@@ -158,16 +250,16 @@ const allSkills = [
 .skills-cloud {
     display: flex;
     flex-wrap: wrap;
-    gap: 1rem;
+    gap: 0.8rem;
     border-top: 1px solid var(--border);
-    padding-top: 2rem;
+    padding-top: 1.5rem;
 }
 
 .skill-tag {
     font-family: var(--font-display);
-    font-size: clamp(1.2rem, 2.5vw, 2.5rem);
+    font-size: clamp(0.85rem, 1.6vw, 1.4rem);
     font-weight: 700;
-    padding: 0.8rem 1.8rem;
+    padding: 0.6rem 1.4rem;
     border: 1px solid var(--border);
     color: var(--text-muted);
     text-transform: uppercase;
@@ -189,7 +281,7 @@ const allSkills = [
 .skill-tag:hover {
     border-color: transparent;
     color: #fff;
-    transform: scale(1.08);
+    transform: scale(1.05);
     box-shadow: 0 8px 30px var(--accent-glow);
 }
 
@@ -228,16 +320,16 @@ const allSkills = [
     }
 
     .section {
-        padding: 3rem var(--section-padding);
+        padding: 2.5rem var(--section-padding);
     }
 
     .skills-cloud {
-        gap: 0.6rem;
+        gap: 0.5rem;
     }
 
     .skill-tag {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
+        padding: 0.4rem 0.9rem;
+        font-size: 0.85rem;
     }
 
     .skill-tag:hover {
@@ -247,12 +339,12 @@ const allSkills = [
 
 @media (max-width: 480px) {
     .skill-tag {
-        padding: 0.4rem 0.8rem;
-        font-size: 0.9rem;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.8rem;
     }
 
     .skills-cloud {
-        gap: 0.5rem;
+        gap: 0.4rem;
     }
 }
 </style>
