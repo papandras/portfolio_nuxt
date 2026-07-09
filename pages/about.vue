@@ -21,15 +21,13 @@
                 </div>
                 <div class="split-content" data-aos="fade-up">
                     <p class="big-text">
-                        {{ $t('introduction') }}
+                        {{ $t('about_bio_1') }}
                     </p>
                     <p class="body-text">
-                        Dolgoztam <strong>GraphQL API</strong>-kon, <strong>PostgreSQL</strong> és <strong>MongoDB</strong>
-                        adatbázisokkal. Részt vettem <strong>Symfony</strong> alapú legacy rendszerek fejlesztésében, és kisebb
-                        <strong>React</strong> feladatok révén frontend tapasztalatot is szereztem.
+                        {{ $t('about_bio_2') }}
                     </p>
                     <p class="body-text">
-                        Fontos számomra a minőségi, határidőre elvégzett munka és a folyamatos szakmai fejlődés.
+                        {{ $t('about_bio_3') }}
                     </p>
                     <a href="#" class="btn-gradient mt-lg">
                         <i class="fa-solid fa-download"></i> {{ $t('download_cv') }}
@@ -38,11 +36,62 @@
             </div>
         </section>
 
+        <!-- Competencies -->
+        <section class="section competencies-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">02</span>
+                    <h2 class="section-label">{{ $t('competencies') }}</h2>
+                </div>
+                <div class="split-content">
+                    <div class="comp-grid">
+                        <div v-for="comp in competencies" :key="comp.icon" class="comp-card" data-aos="fade-up">
+                            <div class="comp-icon"><i :class="comp.icon"></i></div>
+                            <h4 class="comp-title">{{ comp.title }}</h4>
+                            <p class="comp-desc">{{ $t(comp.descKey) }}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Work Method + Stats -->
+        <section class="section stats-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">03</span>
+                    <h2 class="section-label">{{ $t('about_method_title') }}</h2>
+                </div>
+                <div class="split-content" data-aos="fade-up">
+                    <ul class="method-list">
+                        <li><i class="fa-brands fa-git-alt"></i> {{ $t('about_method_1') }}</li>
+                        <li><i class="fa-brands fa-jira"></i> {{ $t('about_method_2') }}</li>
+                        <li><i class="fa-solid fa-robot"></i> {{ $t('about_method_3') }}</li>
+                    </ul>
+
+                    <div class="stats-row">
+                        <div class="stat-card" data-aos="zoom-in">
+                            <span class="stat-value text-accent">~2 300</span>
+                            <span class="stat-label">Commits</span>
+                        </div>
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="100">
+                            <span class="stat-value text-accent">25</span>
+                            <span class="stat-label">Repositories</span>
+                        </div>
+                        <div class="stat-card" data-aos="zoom-in" data-aos-delay="200">
+                            <span class="stat-value text-accent">4+</span>
+                            <span class="stat-label">{{ $t('year') }}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Hobbies / Translations -->
         <section class="section hobbies-section">
             <div class="grid-split">
                 <div class="split-label" data-aos="fade-right">
-                    <span class="section-number">02</span>
+                    <span class="section-number">04</span>
                     <h2 class="section-label">{{ $t('hobbies') }}</h2>
                 </div>
                 <div class="split-content">
@@ -76,6 +125,15 @@ import { definePageMeta, useLocalePath } from '#imports'
 
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
+
+const competencies = [
+    { icon: 'fa-solid fa-server', title: 'Backend', descKey: 'comp_backend' },
+    { icon: 'fa-solid fa-magnifying-glass', title: 'Search & Data', descKey: 'comp_search' },
+    { icon: 'fa-solid fa-coins', title: 'Finance', descKey: 'comp_finance' },
+    { icon: 'fa-solid fa-gears', title: 'Background Processing', descKey: 'comp_background' },
+    { icon: 'fa-solid fa-layer-group', title: 'Full-stack', descKey: 'comp_fullstack' },
+    { icon: 'fa-solid fa-robot', title: 'AI-Assisted Dev', descKey: 'comp_ai' },
+]
 
 const gameTranslations = [{
     title: 'Assassin\'s Creed Odyssey',
@@ -192,6 +250,125 @@ const gameTranslations = [{
 
 .mt-lg { margin-top: 3rem; }
 
+/* Competencies */
+.competencies-section {
+    border-top: 1px solid var(--border);
+}
+
+.comp-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+}
+
+.comp-card {
+    border: 1px solid var(--border);
+    padding: 1.8rem;
+    background: var(--bg-elevated);
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.comp-card:hover {
+    border-color: var(--accent-start);
+    transform: translateY(-4px);
+    box-shadow: 0 8px 30px var(--accent-glow);
+}
+
+.comp-icon {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.comp-title {
+    font-family: var(--font-display);
+    font-size: 1.1rem;
+    font-weight: 700;
+    margin-bottom: 0.6rem;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.comp-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+}
+
+/* Stats + Method */
+.stats-section {
+    border-top: 1px solid var(--border);
+}
+
+.method-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1.5rem;
+}
+
+.method-list li {
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.method-list li i {
+    font-size: 1.2rem;
+    min-width: 1.5rem;
+    text-align: center;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+}
+
+.stat-card {
+    border: 1px solid var(--border);
+    padding: 2rem 1.5rem;
+    text-align: center;
+    background: var(--bg-card);
+    transition: all 0.4s var(--ease-out-expo);
+}
+
+.stat-card:hover {
+    border-color: var(--accent-start);
+    transform: translateY(-4px);
+}
+
+.stat-value {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 700;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+
 /* Hobbies */
 .bio-section {
     border-top: 1px solid var(--border);
@@ -291,6 +468,10 @@ const gameTranslations = [{
         min-height: 40vh;
         padding-top: 6rem;
     }
+
+    .comp-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
@@ -319,6 +500,37 @@ const gameTranslations = [{
 
     .body-text {
         font-size: 1rem;
+    }
+
+    .comp-grid {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .comp-card {
+        padding: 1.3rem;
+    }
+
+    .comp-card:hover {
+        transform: translateY(-2px);
+    }
+
+    .stats-row {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.8rem;
+    }
+
+    .stat-value {
+        font-size: 1.8rem;
+    }
+
+    .stat-label {
+        font-size: 0.7rem;
+    }
+
+    .method-list li {
+        font-size: 0.95rem;
+        gap: 0.8rem;
     }
 
     .subsection-title {
@@ -361,6 +573,14 @@ const gameTranslations = [{
 
     .card-title {
         font-size: 1.1rem;
+    }
+
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+
+    .stat-card {
+        padding: 1.5rem 1rem;
     }
 }
 </style>

@@ -56,7 +56,7 @@
             <div class="marquee-track">
                 <div class="marquee-content">
                     <span v-for="n in 3" :key="n">
-                        VUE • NUXT • TYPESCRIPT • NODE.JS • PHP • LARAVEL • REACT • C# • WORDPRESS • GSAP •&nbsp;
+                        NODE.JS • GRAPHQL • TYPESCRIPT • ELASTICSEARCH • REACT • PHP • WORDPRESS • POSTGRESQL • PRISMA • DOCKER •&nbsp;
                     </span>
                 </div>
             </div>

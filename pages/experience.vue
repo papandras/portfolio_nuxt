@@ -52,17 +52,45 @@ const localePath = useLocalePath()
 const experience = [{
     year: '2022 — PRESENT',
     type: 'work',
-    place: 'HMSoft Zrt.',
+    place: 'HMSoft Zrt. (HerMész-Soft)',
     placeKey: 'company',
-    description: 'Fullstack / Backend Developer',
-    skills: ['Node.JS', 'PHP', 'React', 'WordPress', 'GraphQL', 'PostgreSQL']
+    description: 'Backend / Full-stack Developer — Enterprise rendszerek fejlesztése: egészségügyi kamarai tagnyilvántartó, országos könyvtári platform, közmédiás CMS',
+    skills: ['Node.js', 'GraphQL', 'Apollo Federation', 'Prisma', 'PostgreSQL', 'Elasticsearch', 'React', 'WordPress', 'PHP', 'RabbitMQ', 'Next.js', 'TypeScript']
+}, {
+    year: '2025 — PRESENT',
+    type: 'project',
+    place: 'Közmédiás CMS (WordPress)',
+    placeKey: '',
+    description: 'Nagy, több-brandes szerkesztőségi platform fejlesztése — hírlevélrendszer, widgetek, WCAG akadálymentesítés, AI-asszisztált delivery (~470 commit)',
+    skills: ['WordPress', 'PHP', 'JavaScript', 'Keycloak', 'WCAG', 'GTM']
+}, {
+    year: '2022 — PRESENT',
+    type: 'project',
+    place: 'Egészségügyi kamara — tagdíj/számlázás',
+    placeKey: '',
+    description: 'Országos tag- és tagdíj-nyilvántartó rendszer: pénzügyi évzárás, Billingo számlázás, RabbitMQ workerek, Camunda workflow (~1300 commit, legaktívabb commitelő)',
+    skills: ['Apollo Federation', 'Prisma', 'PostgreSQL', 'RabbitMQ', 'Camunda', 'Billingo', 'ExcelJS']
+}, {
+    year: '2022 — PRESENT',
+    type: 'project',
+    place: 'Országos könyvtári platform (ILS/OPAC)',
+    placeKey: '',
+    description: 'Modularizált könyvtári rendszer: kölcsönzési modul, katalógus-frontend, discovery UI, Elasticsearch keresőlogika, MARC21 adatmodell',
+    skills: ['GraphQL', 'Elasticsearch', 'MARC21', 'React', 'MUI', 'Gatsby', 'MongoDB']
+}, {
+    year: '2022 — 2024',
+    type: 'project',
+    place: 'Bibliográfiai keresőmotor (Symfony + ES)',
+    placeKey: '',
+    description: 'Humanus/OPAC keresőlogika — komplex MARC21 keresés, facetta-aggregációk, magyar nyelvű rendezés, ékezet-normalizálás',
+    skills: ['Symfony', 'PHP', 'Elasticsearch', 'Elastica', 'MARC21', 'HUNMARC']
 }, {
     year: '2017 — 2022',
     type: 'school',
     place: 'BMSZC Neumann János Informatikai Technikum',
     placeKey: 'neumann',
     description: '',
-    skills: ['HTML', 'CSS', 'JS', 'PHP', 'C#', 'VUE']
+    skills: ['HTML', 'CSS', 'JavaScript', 'PHP', 'C#', 'Vue.js']
 }]
 </script>
 

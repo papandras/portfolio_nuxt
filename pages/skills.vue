@@ -42,24 +42,46 @@ definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
 
 const allSkills = [
-    { name: 'Vue.js', featured: true },
-    { name: 'Nuxt 3', featured: true },
-    { name: 'TypeScript', featured: true },
+    // Primary Backend
     { name: 'Node.js', featured: true },
-    { name: 'React.js', featured: false },
+    { name: 'GraphQL', featured: true },
+    { name: 'Apollo Federation', featured: true },
+    { name: 'TypeScript', featured: true },
     { name: 'PHP', featured: true },
-    { name: 'Laravel', featured: false },
-    { name: 'C#', featured: false },
-    { name: 'PostgreSQL', featured: false },
+    { name: 'Symfony', featured: false },
+    { name: 'Express', featured: false },
+    // Search & Data
+    { name: 'Elasticsearch', featured: true },
+    { name: 'MARC21', featured: false },
+    { name: 'Prisma', featured: true },
+    // Databases
+    { name: 'PostgreSQL', featured: true },
     { name: 'MongoDB', featured: false },
-    { name: 'GraphQL', featured: false },
+    { name: 'MySQL', featured: false },
+    { name: 'Redis', featured: false },
+    // Messaging / Workflow
+    { name: 'RabbitMQ', featured: false },
+    { name: 'Camunda', featured: false },
+    // Frontend
+    { name: 'React', featured: true },
+    { name: 'Next.js', featured: false },
+    { name: 'Material-UI', featured: false },
+    { name: 'Vue.js', featured: false },
+    { name: 'Nuxt', featured: false },
+    { name: 'Gatsby', featured: false },
+    // CMS
+    { name: 'WordPress', featured: true },
+    // Auth / Ops
+    { name: 'Keycloak', featured: false },
     { name: 'Docker', featured: false },
     { name: 'Git', featured: true },
-    { name: 'WordPress', featured: false },
-    { name: 'HTML & CSS', featured: true },
-    { name: 'GSAP', featured: false },
-    { name: 'Microservices', featured: false },
+    { name: 'Electron', featured: false },
+    // AI
+    { name: 'AI-Assisted Dev', featured: true },
+    // Web Standards
+    { name: 'HTML & CSS', featured: false },
     { name: 'REST APIs', featured: false },
+    { name: 'WCAG', featured: false },
 ]
 </script>
 
