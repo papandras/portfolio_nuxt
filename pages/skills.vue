@@ -7,8 +7,8 @@
         <!-- Hero -->
         <section class="page-hero">
             <h1 class="hero-title">
-                <span class="outline-text" data-aos="fade-down">TECH</span>
-                <span class="text-accent" data-aos="fade-up">STACK.</span>
+                <span class="outline-text" data-aos="fade-down">{{ $t('hero_skills_1') }}</span>
+                <span class="text-accent" data-aos="fade-up">{{ $t('hero_skills_2') }}</span>
             </h1>
         </section>
 
