@@ -134,21 +134,22 @@ const switchLang = (lang: string) => {
     padding: 2rem var(--section-padding);
     display: flex;
     flex-direction: column;
-    gap: 4rem;
+    justify-content: center;
+    gap: 1rem;
 }
 
 /* ---- Navigation Links ---- */
 .nav-links {
     display: flex;
     flex-direction: column;
-    gap: 0.3rem;
+    gap: 0;
 }
 
 .nav-link {
     display: flex;
     align-items: baseline;
     gap: 1.5rem;
-    padding: 0.8rem 0;
+    padding: 0.5rem 0;
     text-decoration: none;
     transition: all 0.4s var(--ease-out-expo);
     border-bottom: 1px solid var(--border);
@@ -165,12 +166,12 @@ const switchLang = (lang: string) => {
 
 .nav-text {
     font-family: var(--font-display);
-    font-size: clamp(2.5rem, 6vw, 5rem);
+    font-size: clamp(2rem, 4.5vw, 4.5rem);
     font-weight: 700;
     color: transparent;
     -webkit-text-stroke: 1.5px var(--text-muted);
     text-transform: uppercase;
-    line-height: 1.1;
+    line-height: 1.05;
     transition: all 0.4s var(--ease-out-expo);
 }
 
@@ -279,6 +280,16 @@ const switchLang = (lang: string) => {
 }
 
 /* ---- Responsive ---- */
+@media (max-width: 1024px) {
+    .nav-text {
+        font-size: clamp(1.8rem, 3.5vw, 3.5rem);
+    }
+
+    .nav-link {
+        padding: 0.4rem 0;
+    }
+}
+
 @media (max-width: 768px) {
     .menu-toggle {
         top: 1.2rem;
@@ -294,17 +305,17 @@ const switchLang = (lang: string) => {
     }
 
     .nav-overlay-inner {
-        padding: 5rem var(--section-padding) 3rem;
-        gap: 3rem;
+        padding: 4.5rem var(--section-padding) 2rem;
+        gap: 1rem;
     }
 
     .nav-link {
-        padding: 0.6rem 0;
+        padding: 0.45rem 0;
         gap: 1rem;
     }
 
     .nav-text {
-        font-size: clamp(1.8rem, 8vw, 3rem);
+        font-size: clamp(1.6rem, 7vw, 2.8rem);
     }
 
     .nav-number {
@@ -328,11 +339,15 @@ const switchLang = (lang: string) => {
 
 @media (max-width: 480px) {
     .nav-text {
-        font-size: clamp(1.5rem, 7vw, 2.2rem);
+        font-size: clamp(1.4rem, 8vw, 2rem);
     }
 
-    .nav-links {
-        gap: 0.1rem;
+    .nav-link {
+        padding: 0.4rem 0;
+    }
+
+    .nav-overlay-inner {
+        padding: 4rem var(--section-padding) 1.5rem;
     }
 }
 </style>
