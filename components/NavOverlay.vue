@@ -53,6 +53,7 @@ const navLinks = [
     { path: '/about', key: 'about', label: 'ABOUT' },
     { path: '/experience', key: 'experience', label: 'EXPERIENCE' },
     { path: '/projects', key: 'projects', label: 'PROJECTS' },
+    { path: '/services', key: 'services', label: 'SERVICES' },
     { path: '/skills', key: 'skills', label: 'SKILLS' },
     { path: '/contact', key: 'contact', label: 'CONTACT' },
 ]
