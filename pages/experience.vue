@@ -93,7 +93,7 @@ const localePath = useLocalePath()
 
 const companyProjects = [
     {
-        title: 'Egészségügyi kamara — tagnyilvántartó és tagdíj-/számlázási backend',
+        title: 'Tagnyilvántartó és tagdíj-/számlázási backend',
         year: '2022 — Jelen',
         role: 'Backend-fejlesztő · Legnagyobb személyes hozzájárulás',
         commits: '~1300',
@@ -108,7 +108,7 @@ const companyProjects = [
         skills: ['Apollo Federation', 'Prisma', 'PostgreSQL', 'Elasticsearch', 'RabbitMQ', 'Camunda', 'Billingo', 'ExcelJS', 'PDF']
     },
     {
-        title: 'Országos könyvtári platform (ILS/OPAC)',
+        title: 'Könyvtári platform (ILS/OPAC)',
         year: '2022 — Jelen',
         role: 'Backend-fejlesztő',
         commits: '~140+',
@@ -121,7 +121,7 @@ const companyProjects = [
         skills: ['GraphQL', 'AMQP', 'React', 'MUI', 'Gatsby', 'MongoDB', 'Elasticsearch', 'MARC21', 'i18n']
     },
     {
-        title: 'Bibliográfiai keresőmotor — Humanus / OPAC',
+        title: 'Bibliográfiai keresőmotor',
         year: '2022 — 2024',
         role: 'Fejlesztő · Symfony + Elasticsearch',
         commits: '~150',
@@ -135,7 +135,7 @@ const companyProjects = [
         skills: ['Symfony', 'PHP', 'Elasticsearch', 'Elastica', 'MARC21', 'HUNMARC', 'Query DSL']
     },
     {
-        title: 'Közmédiás tartalomkezelő rendszer (WordPress CMS)',
+        title: 'Tartalomkezelő rendszer (WordPress CMS)',
         year: '2025 — Jelen',
         role: 'Fejlesztő · AI-asszisztált delivery',
         commits: '~470',
@@ -161,7 +161,7 @@ const companyProjects = [
         skills: ['Next.js', 'TypeScript', 'React', 'MUI', 'Keycloak', 'React Query', 'ISR']
     },
     {
-        title: 'Libmate/Libpoint könyvtári kiszolgálópont',
+        title: 'Könyvtári kiszolgálópont',
         year: '2022 — Jelen',
         role: 'Fejlesztő',
         commits: null,
@@ -185,6 +185,7 @@ const companyProjects = [
     },
 ]
 </script>
+
 
 <style scoped>
 .noir-page {
