@@ -2,7 +2,7 @@
     <div>
         <!-- Floating Menu Toggle -->
         <button type="button" class="menu-toggle" @click.stop.prevent="toggleMenu" :class="{ 'is-open': isOpen }">
-            <span class="menu-label">{{ isOpen ? 'CLOSE' : 'MENU' }}</span>
+            <span class="menu-label">{{ isOpen ? $t('close') : $t('menu') }}</span>
             <span class="menu-dot"></span>
         </button>
 
