@@ -8,7 +8,7 @@
         <section class="page-hero">
             <h1 class="hero-title">
                 <span class="outline-text" data-aos="fade-down">MY</span>
-                <span class="text-accent" data-aos="fade-up">{{ $t('experience') }}.</span>
+                <span class="text-accent" data-aos="fade-up">EXPERIENCE.</span>
             </h1>
         </section>
 

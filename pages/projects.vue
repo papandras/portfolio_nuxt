@@ -7,7 +7,7 @@
         <!-- Hero -->
         <section class="page-hero">
             <h1 class="hero-title">
-                <span class="outline-text" data-aos="fade-down">{{ $t('projects') }}</span>
+                <span class="outline-text" data-aos="fade-down">MY</span>
                 <span class="text-accent" data-aos="fade-up">WORKS.</span>
             </h1>
         </section>
