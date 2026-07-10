@@ -95,6 +95,39 @@
             </div>
         </section>
 
+        <!-- ===== SERVICES PREVIEW ===== -->
+        <section class="section services-preview-section">
+            <div class="grid-split">
+                <div class="split-label" data-aos="fade-right">
+                    <span class="section-number">03</span>
+                    <h2 class="section-label">{{ $t('services') }}</h2>
+                </div>
+                <div class="split-content" data-aos="fade-left">
+                    <p class="big-text">
+                        {{ $t('srv_intro') }}
+                    </p>
+                    
+                    <div class="services-grid mt-lg">
+                        <NuxtLink v-for="(srv, i) in serviceTypes" :key="srv.titleKey"
+                            :to="localePath('/services')"
+                            class="service-card"
+                            data-aos="fade-up"
+                            :data-aos-delay="i * 60">
+                            <div class="service-header">
+                                <div class="service-icon"><i :class="srv.icon"></i></div>
+                                <h3 class="service-title">{{ $t(srv.titleKey) }}</h3>
+                            </div>
+                            <p class="service-desc">{{ $t(srv.descKey) }}</p>
+                        </NuxtLink>
+                    </div>
+
+                    <NuxtLink :to="localePath('/services')" class="btn-outline mt-lg">
+                        {{ $t('services') }} <i class="fa-solid fa-arrow-right"></i>
+                    </NuxtLink>
+                </div>
+            </div>
+        </section>
+
         <!-- ===== PROJECTS CTA ===== -->
         <section class="section projects-cta-section">
             <div class="projects-cta-content" data-aos="zoom-in" data-aos-duration="800">
@@ -130,6 +163,34 @@ import { definePageMeta, useLocalePath } from '#imports'
 
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
+
+const serviceTypes = [
+    {
+        icon: 'fa-solid fa-rocket',
+        titleKey: 'srv_type_landing_title',
+        descKey: 'srv_type_landing_desc'
+    },
+    {
+        icon: 'fa-solid fa-address-card',
+        titleKey: 'srv_type_portfolio_title',
+        descKey: 'srv_type_portfolio_desc'
+    },
+    {
+        icon: 'fa-solid fa-building',
+        titleKey: 'srv_type_corporate_title',
+        descKey: 'srv_type_corporate_desc'
+    },
+    {
+        icon: 'fa-brands fa-wordpress',
+        titleKey: 'srv_type_wp_title',
+        descKey: 'srv_type_wp_desc'
+    },
+    {
+        icon: 'fa-solid fa-wand-magic-sparkles',
+        titleKey: 'srv_type_custom_title',
+        descKey: 'srv_type_custom_desc'
+    },
+]
 </script>
 
 <style scoped>
@@ -345,6 +406,62 @@ const localePath = useLocalePath()
     font-weight: 600;
     text-transform: none;
     letter-spacing: 0;
+}
+
+/* ===== SERVICES PREVIEW ===== */
+.services-preview-section {
+    background: var(--bg);
+}
+
+.services-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 2rem;
+}
+
+.service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: 1.5rem;
+    transition: all 0.4s var(--ease-out-expo);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.service-card:hover {
+    border-color: var(--accent-start);
+    transform: translateY(-4px);
+}
+
+.service-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.service-icon {
+    font-size: 1.5rem;
+    background: var(--gradient-accent);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.service-title {
+    font-family: var(--font-display);
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.service-desc {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    line-height: 1.5;
 }
 
 /* ===== PROJECTS CTA ===== */
