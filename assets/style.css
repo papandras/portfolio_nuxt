@@ -129,7 +129,7 @@ ul, ol {
 }
 
 /* ---- Custom Scrollbar ---- */
-@media (pointer: fine) {
+@media (min-width: 1024px) {
     ::-webkit-scrollbar {
         width: 6px;
     }
