@@ -45,15 +45,12 @@
 html {
     scroll-behavior: smooth;
     font-size: 16px;
-    overflow-x: hidden;
-    width: 100%;
 }
 
 body {
     background-color: var(--bg);
     color: var(--text);
     font-family: var(--font-body);
-    overflow-x: hidden;
     width: 100%;
     min-height: 100vh;
     min-height: 100svh;
