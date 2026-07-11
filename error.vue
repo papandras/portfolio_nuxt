@@ -24,6 +24,7 @@ defineProps({
 <style scoped>
 .error-page {
     min-height: 100vh;
+    min-height: 100svh;
     display: flex;
     align-items: center;
     justify-content: center;

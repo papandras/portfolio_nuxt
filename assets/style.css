@@ -56,6 +56,7 @@ body {
     overflow-x: hidden;
     width: 100%;
     min-height: 100vh;
+    min-height: 100svh;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     line-height: 1.6;
@@ -238,6 +239,7 @@ ul, ol {
 /* ---- Section Base ---- */
 .section {
     min-height: 100vh;
+    min-height: 100svh;
     padding: 6rem var(--section-padding);
     display: flex;
     flex-direction: column;

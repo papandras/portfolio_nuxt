@@ -177,6 +177,7 @@ const categories = [
 .noir-page {
     background-color: var(--bg);
     min-height: 100vh;
+    min-height: 100svh;
     padding-bottom: 6rem;
 }
 
