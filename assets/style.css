@@ -128,17 +128,19 @@ ul, ol {
 }
 
 /* ---- Custom Scrollbar ---- */
-::-webkit-scrollbar {
-    width: 6px;
-}
+@media (pointer: fine) {
+    ::-webkit-scrollbar {
+        width: 6px;
+    }
 
-::-webkit-scrollbar-track {
-    background: var(--bg);
-}
+    ::-webkit-scrollbar-track {
+        background: var(--bg);
+    }
 
-::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, var(--accent-start), var(--accent-end));
-    border-radius: 3px;
+    ::-webkit-scrollbar-thumb {
+        background: linear-gradient(180deg, var(--accent-start), var(--accent-end));
+        border-radius: 3px;
+    }
 }
 
 /* ---- Custom Cursor ---- */
