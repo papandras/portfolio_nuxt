@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="layout-root">
         <!-- Custom Cursor -->
         <div class="custom-cursor" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
 
@@ -10,7 +10,9 @@
         <NavOverlay />
 
         <!-- Page Content -->
-        <slot />
+        <div class="page-wrapper">
+            <slot />
+        </div>
     </div>
 </template>
 
@@ -37,5 +39,13 @@ onUnmounted(() => {
 </script>
 
 <style>
-/* Layout base */
+.layout-root {
+    position: relative;
+    width: 100%;
+}
+.page-wrapper {
+    width: 100%;
+    overflow-x: hidden;
+    position: relative;
+}
 </style>

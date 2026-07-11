@@ -293,10 +293,11 @@ const switchLang = (lang: string) => {
 
 @media (max-width: 768px) {
     .menu-toggle {
-        top: 1.2rem;
-        right: 1.2rem;
-        padding: 0.8rem 1rem;
-        font-size: 0.8rem;
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 0.8rem;
+        font-size: 0.75rem;
+        gap: 0.4rem;
     }
 
     .nav-overlay {
