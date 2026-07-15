@@ -62,7 +62,7 @@
             <div class="grid-split">
                 <div class="split-label" data-aos="fade-right">
                     <span class="section-number">02</span>
-                    <h2 class="section-label">EDUCATION</h2>
+                    <h2 class="section-label">{{ $t('education').toUpperCase() }}</h2>
                 </div>
                 <div class="split-content">
                     <div class="timeline">
