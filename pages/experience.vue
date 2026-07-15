@@ -141,10 +141,10 @@ const companyProjects = [
         commits: '~470',
         description: 'Nagy, több-brandes szerkesztőségi platform (hír-, sport- és médiaportálok) fejlesztése, AI-asszisztáltan.',
         highlights: [
-            'WordPress téma- és plugin-fejlesztés PHP-ban (saját hms-api és számos egyedi plugin)',
+            'WordPress téma- és plugin-fejlesztés PHP-ban (belső REST/admin API-hoz köthető egyedi pluginok)',
             'Hírlevél-rendszer (feliratkozás, opt-in, Keycloak-integráció), site-config snapshotok, kvíz-admin',
             'Lejátszási lista / player widgetek, VOD/AOD feedek normalizálása, mobilalkalmazás-promóciók, GTM/Gemius integráció',
-            'WCAG webakadálymentesítés iteratív megvalósítása: kontraszt, fókuszkezelés, ARIA, reszponzív javítások — élő határidős közmédia-projektben',
+            'WCAG webakadálymentesítés iteratív megvalósítása: kontraszt, fókuszkezelés, ARIA, reszponzív javítások — élő határidős médiaprojektben',
         ],
         skills: ['WordPress', 'PHP', 'JavaScript', 'Keycloak', 'WCAG', 'GTM', 'Gemius']
     },
