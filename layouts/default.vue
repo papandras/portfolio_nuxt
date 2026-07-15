@@ -45,7 +45,6 @@ onUnmounted(() => {
 }
 .page-wrapper {
     width: 100%;
-    overflow-x: hidden;
     position: relative;
 }
 </style>
