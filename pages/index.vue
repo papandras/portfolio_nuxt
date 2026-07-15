@@ -191,6 +191,7 @@ const serviceTypes = [
         descKey: 'srv_type_custom_desc'
     },
 ]
+
 </script>
 
 <style scoped>
@@ -200,8 +201,7 @@ const serviceTypes = [
 
 /* ===== HERO ===== */
 .hero-section {
-    min-height: 100vh;
-    min-height: 100svh; min-height: 100svh;
+    min-height: 100svh;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -555,8 +555,9 @@ const serviceTypes = [
 /* Mobile */
 @media (max-width: 768px) {
     .hero-section {
-        min-height: 85vh;
-        padding: 4rem var(--section-padding);
+        min-height: auto;
+        padding: 4rem var(--section-padding) 3rem;
+        justify-content: flex-start;
     }
 
     .hero-label {
@@ -636,8 +637,8 @@ const serviceTypes = [
 /* Small Mobile */
 @media (max-width: 480px) {
     .hero-section {
-        min-height: 80vh;
-        padding: 3rem var(--section-padding);
+        min-height: auto;
+        padding: 3rem var(--section-padding) 2.5rem;
     }
 
     .hero-cta {

@@ -4,6 +4,9 @@ import { defineNuxtPlugin } from "nuxt/app";
 
 export default defineNuxtPlugin((nuxtApp) => {
   nuxtApp.hook("page:finish", () => {
-    AOS.init();
+    AOS.init({
+      once: true,
+      disable: () => window.innerWidth < 768,
+    });
   });
 });
