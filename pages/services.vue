@@ -46,6 +46,7 @@
                             <p class="service-desc">{{ $t(srv.descKey) }}</p>
                             <div class="service-tags">
                                 <span v-for="tag in srv.tags" :key="tag" class="service-tag">{{ tag }}</span>
+                                <span v-for="tagKey in srv.tagKeys" :key="tagKey" class="service-tag">{{ $t(tagKey) }}</span>
                             </div>
                         </div>
                     </div>
@@ -102,31 +103,36 @@ const serviceTypes = [
         icon: 'fa-solid fa-rocket',
         titleKey: 'srv_type_landing_title',
         descKey: 'srv_type_landing_desc',
-        tags: ['HTML / CSS', 'JavaScript', 'SEO', 'Gyors betöltés']
+        tags: ['HTML / CSS', 'JavaScript', 'SEO'],
+        tagKeys: ['srv_tag_fast']
     },
     {
         icon: 'fa-solid fa-address-card',
         titleKey: 'srv_type_portfolio_title',
         descKey: 'srv_type_portfolio_desc',
-        tags: ['Reszponzív', 'Kapcsolatfelvétel', 'Animáció']
+        tags: [],
+        tagKeys: ['srv_tag_responsive', 'srv_tag_contact', 'srv_tag_animation']
     },
     {
         icon: 'fa-solid fa-building',
         titleKey: 'srv_type_corporate_title',
         descKey: 'srv_type_corporate_desc',
-        tags: ['CMS', 'Blog', 'Galéria', 'Kapcsolat']
+        tags: ['CMS', 'Blog'],
+        tagKeys: ['srv_tag_gallery', 'srv_tag_contact']
     },
     {
         icon: 'fa-brands fa-wordpress',
         titleKey: 'srv_type_wp_title',
         descKey: 'srv_type_wp_desc',
-        tags: ['WordPress', 'Egyedi téma', 'Plugin', 'Szerkeszthető']
+        tags: ['WordPress'],
+        tagKeys: ['srv_tag_custom_theme', 'srv_tag_plugin', 'srv_tag_editable']
     },
     {
         icon: 'fa-solid fa-wand-magic-sparkles',
         titleKey: 'srv_type_custom_title',
         descKey: 'srv_type_custom_desc',
-        tags: ['Egyedi igény', 'Konzultáció', 'Rugalmas']
+        tags: [],
+        tagKeys: ['srv_tag_custom_need', 'srv_tag_consultation', 'srv_tag_flexible']
     },
 ]
 

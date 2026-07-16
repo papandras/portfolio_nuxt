@@ -4,9 +4,7 @@ export default defineNuxtConfig({
   devtools: { enabled: true },
   modules: [["@pinia/nuxt", { autoImports: ["defineStore"] }], "@nuxtjs/i18n"],
   plugins: [
-    "~/plugins/cookies.ts",
     "~/plugins/aos.ts",
-    "~/plugins/gsap.client.ts",
   ],
   css: ["aos/dist/aos.css", "./assets/style.css"],
   imports: {
@@ -47,7 +45,29 @@ export default defineNuxtConfig({
           hid: "og:url",
           property: "og:url",
           content: "https://www.papadev.hu",
-        }, // Open Graph
+        },
+        {
+          hid: "og:type",
+          property: "og:type",
+          content: "website",
+        },
+        {
+          hid: "og:image",
+          property: "og:image",
+          content: "https://www.papadev.hu/logo.png",
+        },
+        {
+          name: "twitter:card",
+          content: "summary",
+        },
+        {
+          name: "twitter:title",
+          content: "Pap András portfolio",
+        },
+        {
+          name: "twitter:description",
+          content: "Pap András Fullstack fejlesztő",
+        },
       ],
     },
   },

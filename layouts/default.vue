@@ -1,10 +1,10 @@
 <template>
     <div class="layout-root">
         <!-- Custom Cursor -->
-        <div class="custom-cursor" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
+        <div class="custom-cursor" aria-hidden="true" :style="{ left: cursorX + 'px', top: cursorY + 'px' }"></div>
 
         <!-- Grain Overlay -->
-        <div class="grain-overlay"></div>
+        <div class="grain-overlay" aria-hidden="true"></div>
 
         <!-- Navigation Overlay -->
         <NavOverlay />

@@ -77,7 +77,7 @@
                     <ul class="exp-list">
                         <li class="exp-item">
                             <div class="exp-meta">
-                                <span class="exp-year">2022 — {{ $t('en') === 'English' ? 'JELEN' : 'PRESENT' }}</span>
+                                <span class="exp-year">2022 — {{ $t('present').toUpperCase() }}</span>
                             </div>
                             <h3 class="exp-title">{{ $t('company') }}</h3>
                         </li>
@@ -130,7 +130,7 @@
 
         <!-- ===== PROJECTS PREVIEW ===== -->
         <section class="section projects-preview-section">
-            <div class="grid-split" style="margin-bottom: 3rem;">
+            <div class="grid-split projects-grid-header">
                 <div class="split-label" data-aos="fade-right">
                     <span class="section-number">04</span>
                     <h2 class="section-label">{{ $t('projects') }}</h2>
@@ -151,7 +151,7 @@
                     <div class="project-img-wrap">
                         <img :src="project.img_thumbnail_url" :alt="project.title" class="project-img" loading="lazy">
                         <div class="img-overlay">
-                            <span class="overlay-number">0{{ i + 1 }}</span>
+                            <span class="overlay-number">{{ String(i + 1).padStart(2, '0') }}</span>
                         </div>
                     </div>
 
@@ -165,11 +165,11 @@
                             <span v-for="tech in project.technologies" :key="tech" class="tech-chip">{{ tech }}</span>
                         </div>
                         <div class="project-links">
-                            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" class="project-link">
-                                <i class="fa-brands fa-github"></i> CODE
+                            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer" class="project-link" :aria-label="'View code for ' + project.title">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> CODE
                             </a>
-                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener" class="project-link">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE
+                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link" :aria-label="'View live site: ' + project.title">
+                                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> LIVE
                             </a>
                         </div>
                     </div>
@@ -187,10 +187,10 @@
                         <a href="mailto:hello@papandras.hu" class="contact-link-item">
                             <i class="fa-solid fa-at"></i> hello@papandras.hu
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link-item">
+                        <a href="https://www.linkedin.com/in/papandras" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                             <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="https://github.com/papandras" target="_blank" rel="noopener" class="contact-link-item">
+                        <a href="https://github.com/papandras" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                             <i class="fa-brands fa-github"></i> GitHub
                         </a>
                     </div>
@@ -212,16 +212,16 @@
                             <textarea id="hcsubject" name="subject" v-model="formSubject" class="field-textarea" rows="5" required></textarea>
                             <div class="field-underline"></div>
                         </div>
-                        <button type="submit" class="btn-gradient submit-btn" :disabled="isSending">
-                            {{ isSending ? 'SENDING...' : ($t('send') || 'SEND') }}
-                            <i v-if="!isSending" class="fa-solid fa-paper-plane"></i>
+                        <button type="submit" class="btn-gradient submit-btn" :disabled="isSending" :aria-busy="isSending">
+                            {{ isSending ? $t('sending') : $t('send') }}
+                            <i v-if="!isSending" class="fa-solid fa-paper-plane" aria-hidden="true"></i>
                         </button>
                         <Transition name="fade">
-                            <p v-if="submitStatus === 'success'" class="status-msg success">
-                                <i class="fa-solid fa-check-circle"></i> Message sent successfully!
+                            <p v-if="submitStatus === 'success'" class="status-msg success" role="alert">
+                                <i class="fa-solid fa-check-circle" aria-hidden="true"></i> {{ $t('msg_success') }}
                             </p>
-                            <p v-else-if="submitStatus === 'error'" class="status-msg error">
-                                <i class="fa-solid fa-exclamation-circle"></i> Error sending message. Please try again.
+                            <p v-else-if="submitStatus === 'error'" class="status-msg error" role="alert">
+                                <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i> {{ $t('msg_error') }}
                             </p>
                         </Transition>
                     </form>
@@ -531,7 +531,7 @@ const sendEmail = async () => {
     justify-content: space-between;
     align-items: center;
     gap: 2rem;
-    transition: all 0.4s var(--ease-out-expo);
+    transition: padding 0.4s var(--ease-out-expo), border-color 0.4s var(--ease-out-expo);
 }
 
 .exp-item:hover {
@@ -570,7 +570,7 @@ const sendEmail = async () => {
     background: var(--bg-card);
     border: 1px solid var(--border);
     padding: 1.5rem;
-    transition: all 0.4s var(--ease-out-expo);
+    transition: border-color 0.4s var(--ease-out-expo), transform 0.4s var(--ease-out-expo);
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
@@ -616,6 +616,10 @@ const sendEmail = async () => {
     border-bottom: 1px solid var(--border);
 }
 
+.projects-grid-header {
+    margin-bottom: 3rem;
+}
+
 .projects-grid {
     display: flex;
     flex-direction: column;
@@ -631,12 +635,12 @@ const sendEmail = async () => {
     align-items: center;
 }
 
-.project-card:nth-child(even) {
-    direction: rtl;
+.project-card:nth-child(even) .project-img-wrap {
+    order: 2;
 }
 
-.project-card:nth-child(even) > * {
-    direction: ltr;
+.project-card:nth-child(even) .project-info {
+    order: 1;
 }
 
 .project-img-wrap {

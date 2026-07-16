@@ -24,7 +24,7 @@
                     <div class="project-img-wrap">
                         <img :src="project.img_thumbnail_url" :alt="project.title" class="project-img" loading="lazy">
                         <div class="img-overlay">
-                            <span class="overlay-number">0{{ i + 1 }}</span>
+                            <span class="overlay-number">{{ String(i + 1).padStart(2, '0') }}</span>
                         </div>
                     </div>
 
@@ -42,11 +42,11 @@
                         </div>
 
                         <div class="project-links">
-                            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" class="project-link">
-                                <i class="fa-brands fa-github"></i> CODE
+                            <a v-if="project.github" :href="project.github" target="_blank" rel="noopener noreferrer" class="project-link" :aria-label="'View code for ' + project.title">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> CODE
                             </a>
-                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener" class="project-link">
-                                <i class="fa-solid fa-arrow-up-right-from-square"></i> LIVE
+                            <a v-if="project.link" :href="project.link" target="_blank" rel="noopener noreferrer" class="project-link" :aria-label="'View live site: ' + project.title">
+                                <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i> LIVE
                             </a>
                         </div>
                     </div>
@@ -165,12 +165,12 @@ const projects = [
     align-items: center;
 }
 
-.project-card:nth-child(even) {
-    direction: rtl;
+.project-card:nth-child(even) .project-img-wrap {
+    order: 2;
 }
 
-.project-card:nth-child(even) > * {
-    direction: ltr;
+.project-card:nth-child(even) .project-info {
+    order: 1;
 }
 
 /* Image */
@@ -191,7 +191,7 @@ const projects = [
     aspect-ratio: 16 / 10;
     object-fit: cover;
     filter: grayscale(80%) brightness(0.7);
-    transition: all 0.6s var(--ease-out-expo);
+    transition: filter 0.6s var(--ease-out-expo), transform 0.6s var(--ease-out-expo);
     transform: scale(1.05);
 }
 
@@ -266,7 +266,7 @@ const projects = [
     color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.08em;
-    transition: all 0.3s ease;
+    transition: border-color 0.3s ease, color 0.3s ease;
 }
 
 .project-card:hover .tech-chip {

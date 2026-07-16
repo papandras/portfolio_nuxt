@@ -23,10 +23,10 @@
                         <a href="mailto:hello@papandras.hu" class="contact-link-item">
                             <i class="fa-solid fa-at"></i> hello@papandras.hu
                         </a>
-                        <a href="https://linkedin.com" target="_blank" rel="noopener" class="contact-link-item">
+                        <a href="https://www.linkedin.com/in/papandras" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                             <i class="fa-brands fa-linkedin"></i> LinkedIn
                         </a>
-                        <a href="https://github.com/papandras" target="_blank" rel="noopener" class="contact-link-item">
+                        <a href="https://github.com/papandras" target="_blank" rel="noopener noreferrer" class="contact-link-item">
                             <i class="fa-brands fa-github"></i> GitHub
                         </a>
                     </div>
@@ -51,17 +51,17 @@
                             <div class="field-underline"></div>
                         </div>
 
-                        <button type="submit" class="btn-gradient submit-btn" :disabled="isSending">
-                            {{ isSending ? 'SENDING...' : ($t('send') || 'SEND') }}
-                            <i v-if="!isSending" class="fa-solid fa-paper-plane"></i>
+                        <button type="submit" class="btn-gradient submit-btn" :disabled="isSending" :aria-busy="isSending">
+                            {{ isSending ? $t('sending') : $t('send') }}
+                            <i v-if="!isSending" class="fa-solid fa-paper-plane" aria-hidden="true"></i>
                         </button>
 
                         <Transition name="fade">
-                            <p v-if="submitStatus === 'success'" class="status-msg success">
-                                <i class="fa-solid fa-check-circle"></i> Message sent successfully!
+                            <p v-if="submitStatus === 'success'" class="status-msg success" role="alert">
+                                <i class="fa-solid fa-check-circle" aria-hidden="true"></i> {{ $t('msg_success') }}
                             </p>
-                            <p v-else-if="submitStatus === 'error'" class="status-msg error">
-                                <i class="fa-solid fa-exclamation-circle"></i> Error sending message. Please try again.
+                            <p v-else-if="submitStatus === 'error'" class="status-msg error" role="alert">
+                                <i class="fa-solid fa-exclamation-circle" aria-hidden="true"></i> {{ $t('msg_error') }}
                             </p>
                         </Transition>
                     </form>
@@ -199,7 +199,7 @@ const sendEmail = async () => {
     display: flex;
     align-items: center;
     gap: 0.8rem;
-    transition: all 0.3s ease;
+    transition: color 0.3s ease, transform 0.3s ease;
     text-transform: none;
     letter-spacing: 0;
 }

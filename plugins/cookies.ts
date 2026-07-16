@@ -1,12 +1,4 @@
-import VueCookieAcceptDecline from "vue-cookie-accept-decline";
-import "vue-cookie-accept-decline/dist/vue-cookie-accept-decline.css";
-import Cookie from "js-cookie";
-import { defineNuxtPlugin } from "nuxt/app";
-
-export default defineNuxtPlugin((nuxtApp) => {
-  if (Cookie.get("lang") === undefined) {
-    Cookie.set("lang", "hun");
-  }
-
-  nuxtApp.vueApp.component("vue-cookie-accept-decline", VueCookieAcceptDecline);
-});
+// Cookie plugin removed — vue-cookie-accept-decline and js-cookie were unused dead code.
+// The lang cookie ('hun') did not match i18n locales ('hu'/'en') and was never read.
+// If cookie consent is needed in the future, install a maintained package and create a .client.ts plugin.
+export default defineNuxtPlugin(() => {})

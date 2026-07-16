@@ -1,7 +1,3 @@
-import { defineNuxtPlugin } from "nuxt/app";
-
-import { gsap } from "gsap";
-
-export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.vueApp.config.globalProperties.$gsap = gsap;
-});
+// GSAP plugin removed — $gsap global property was never used in any component.
+// Components that need GSAP should import it directly: import { gsap } from 'gsap'
+export default defineNuxtPlugin(() => {})

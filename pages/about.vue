@@ -24,8 +24,8 @@
                     <p class="big-text">{{ $t('about_summary_1') }}</p>
                     <p class="body-text">{{ $t('about_summary_2') }}</p>
                     <p class="body-text highlight-text">{{ $t('about_summary_3') }}</p>
-                    <a href="#" class="btn-gradient mt-lg">
-                        <i class="fa-solid fa-download"></i> {{ $t('download_cv') }}
+                    <a :href="'/cv_' + locale + '.pdf'" download class="btn-gradient mt-lg">
+                        <i class="fa-solid fa-download" aria-hidden="true"></i> {{ $t('download_cv') }}
                     </a>
                 </div>
             </div>
@@ -59,10 +59,10 @@
                 </div>
                 <div class="split-content" data-aos="fade-up">
                     <div class="soft-grid">
-                        <div v-for="soft in softSkills" :key="soft.icon" class="soft-card">
+                        <div v-for="soft in softSkills" :key="soft.titleKey" class="soft-card">
                             <div class="soft-icon"><i :class="soft.icon"></i></div>
                             <div class="soft-body">
-                                <h4 class="soft-title">{{ soft.title }}</h4>
+                                <h4 class="soft-title">{{ $t(soft.titleKey) }}</h4>
                                 <p class="soft-desc">{{ $t(soft.descKey) }}</p>
                             </div>
                         </div>
@@ -134,13 +134,13 @@
                                 <h4 class="card-title">{{ game.title }}</h4>
                                 <span class="card-year">{{ game.year }}</span>
                             </div>
-                            <p class="card-desc">{{ game.description }}</p>
+                            <p class="card-desc">{{ $t(game.descKey) }}</p>
                             <div class="card-footer">
                                 <span class="card-status">
                                     {{ $t('status') }}: <span class="text-accent">{{ $t(game.statusKey) }}</span>
                                 </span>
-                                <a v-if="game.link" :href="game.link" target="_blank" rel="noopener" class="card-link">
-                                    VIEW <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                <a v-if="game.link" :href="game.link" target="_blank" rel="noopener noreferrer" class="card-link" :aria-label="'View ' + game.title">
+                                    VIEW <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
                                 </a>
                             </div>
                         </div>
@@ -152,10 +152,11 @@
 </template>
 
 <script setup lang="ts">
-import { definePageMeta, useLocalePath } from '#imports'
+import { definePageMeta, useLocalePath, useI18n } from '#imports'
 
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
+const { locale } = useI18n()
 
 const competencies = [
     { icon: 'fa-solid fa-server', title: 'Backend', descKey: 'comp_backend' },
@@ -168,30 +169,30 @@ const competencies = [
 ]
 
 const softSkills = [
-    { icon: 'fa-solid fa-robot', title: 'AI-asszisztált fejlesztés', descKey: 'soft_ai' },
-    { icon: 'fa-solid fa-bullseye', title: 'Domain-fókusz', descKey: 'soft_domain' },
-    { icon: 'fa-solid fa-people-group', title: 'Csapatmunka', descKey: 'soft_team' },
-    { icon: 'fa-solid fa-shield-halved', title: 'Megbízhatóság', descKey: 'soft_reliability' },
-    { icon: 'fa-solid fa-truck-fast', title: 'Release-orientált szállítás', descKey: 'soft_delivery' },
+    { icon: 'fa-solid fa-robot', titleKey: 'soft_ai_title', descKey: 'soft_ai' },
+    { icon: 'fa-solid fa-bullseye', titleKey: 'soft_domain_title', descKey: 'soft_domain' },
+    { icon: 'fa-solid fa-people-group', titleKey: 'soft_team_title', descKey: 'soft_team' },
+    { icon: 'fa-solid fa-shield-halved', titleKey: 'soft_reliability_title', descKey: 'soft_reliability' },
+    { icon: 'fa-solid fa-truck-fast', titleKey: 'soft_delivery_title', descKey: 'soft_delivery' },
 ]
 
 const gameTranslations = [{
     title: 'Assassin\'s Creed Odyssey',
-    description: 'The Lost Tales of Greece, Crossover Story, Legacy of the First Blade és The Fate of Atlantis kiegészítők magyarítása.',
+    descKey: 'game_aco_desc',
     link: 'https://magyaritasok.hu/games/assassins-creed-odyssey',
     statusKey: 'completed',
     year: '2020 — 2022'
 }, {
     title: 'Assassin\'s Creed Valhalla',
-    description: 'Alapjáték, Crossover Story, The Last Chapter és a Dawn of Ragnarök kiegészítő magyarítása.',
+    descKey: 'game_acv_desc',
     link: 'https://magyaritasok.hu/games/assassins-creed-valhalla',
     statusKey: 'in_progress',
-    year: '2022 — PRESENT'
+    year: '2022 —'
 }, {
     title: 'Assassin\'s Creed Shadows',
-    description: 'Future project.',
+    descKey: 'game_acs_desc',
     link: null,
-    statusKey: 'futured',
+    statusKey: 'planned',
     year: 'TBA'
 }]
 </script>

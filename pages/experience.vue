@@ -86,104 +86,105 @@
 </template>
 
 <script setup lang="ts">
-import { definePageMeta, useLocalePath } from '#imports'
+import { definePageMeta, useLocalePath, useI18n } from '#imports'
 
 definePageMeta({ layout: 'default' })
 const localePath = useLocalePath()
+const { t } = useI18n()
 
-const companyProjects = [
+const companyProjects = computed(() => [
     {
-        title: 'Tagnyilvántartó és tagdíj-/számlázási backend',
-        year: '2022 — Jelen',
-        role: 'Backend-fejlesztő · Legnagyobb személyes hozzájárulás',
+        title: t('exp_proj1_title'),
+        year: '2022 — ' + t('present'),
+        role: t('exp_proj1_role'),
         commits: '~1300',
-        description: 'Egy szakmai kamara országos tag- és tagdíj-nyilvántartó rendszerének fejlesztése. Legaktívabb commitelő a repóban.',
+        description: t('exp_proj1_desc'),
         highlights: [
-            'Apollo GraphQL Federation + Prisma/PostgreSQL backend, több adatbázissal és Elasticsearch-integrációval',
-            'Pénzügyi évzárás és egyenlegkivonat-generálás (PDF-sablonok), tranzakció-határok és race conditionök kezelése (Prisma P2002 retry-logika)',
-            'Tagdíj- és díjkategória-logika, országos tagonkénti elosztás, korcsoportos díjriportok (ExcelJS)',
-            'Számlázási integráció (Billingo), RabbitMQ-alapú értesítési worker-ök, késedelmi fizetési emlékeztetők, Camunda workflow-integráció',
-            'Önálló adatmigrációs és adhoc szkriptek (pl. irányítószám-migráció, számlázási adatjavítások)',
+            t('exp_proj1_h1'),
+            t('exp_proj1_h2'),
+            t('exp_proj1_h3'),
+            t('exp_proj1_h4'),
+            t('exp_proj1_h5'),
         ],
         skills: ['Apollo Federation', 'Prisma', 'PostgreSQL', 'Elasticsearch', 'RabbitMQ', 'Camunda', 'Billingo', 'ExcelJS', 'PDF']
     },
     {
-        title: 'Könyvtári platform (ILS/OPAC)',
-        year: '2022 — Jelen',
-        role: 'Backend-fejlesztő',
+        title: t('exp_proj2_title'),
+        year: '2022 — ' + t('present'),
+        role: t('exp_proj2_role'),
         commits: '~140+',
-        description: 'Modularizált könyvtári rendszer több backend-federation és frontend moduljának fejlesztése (kölcsönzés, katalógus, beszerzés, raktár, tárgyi eszközök, partner, publikus discovery).',
+        description: t('exp_proj2_desc'),
         highlights: [
-            'Kölcsönzési modul: önálló GraphQL federation subgraph, AMQP-vezérelt e-mail értesítések, automatikus késedelmi-díj cron, egységesített sablonrendszer',
-            'Katalógus-frontend (React/MUI) és publikus discovery frontend (Gatsby): kereső-UI, operátorok, dátumszűrők, i18n',
-            'Adatmodell-migrációk és adhoc riport-szkriptek több modulban',
+            t('exp_proj2_h1'),
+            t('exp_proj2_h2'),
+            t('exp_proj2_h3'),
         ],
         skills: ['GraphQL', 'AMQP', 'React', 'MUI', 'Gatsby', 'MongoDB', 'Elasticsearch', 'MARC21', 'i18n']
     },
     {
-        title: 'Bibliográfiai keresőmotor',
+        title: t('exp_proj3_title'),
         year: '2022 — 2024',
-        role: 'Fejlesztő · Symfony + Elasticsearch',
+        role: t('exp_proj3_role'),
         commits: '~150',
-        description: 'A könyvtári keresőlogika jelentős részének szerzője PHP/Symfony alapon, Elasticsearch (Elastica) felett — ritka, piacképes szakterületi kombináció.',
+        description: t('exp_proj3_desc'),
         highlights: [
-            'Komplex MARC21-keresés: nested bool/wildcard/terms query-k, "mindreader" rekord-ID felismerés, target control field kezelés',
-            'Facetta-aggregációk (szerző, tudományterület, contributor-role), aggregáció-méretezés, inner_hits',
-            'Magyar nyelvű találati rendezés, ékezet-normalizálás, rekordkapcsolat-feloldás, index-építő/adatbetöltő parancsok',
-            'MARC-importáló és HUNMARC mező-mapping (kapcsolódó Symfony projekt)',
+            t('exp_proj3_h1'),
+            t('exp_proj3_h2'),
+            t('exp_proj3_h3'),
+            t('exp_proj3_h4'),
         ],
         skills: ['Symfony', 'PHP', 'Elasticsearch', 'Elastica', 'MARC21', 'HUNMARC', 'Query DSL']
     },
     {
-        title: 'Tartalomkezelő rendszer (WordPress CMS)',
-        year: '2025 — Jelen',
-        role: 'Fejlesztő · AI-asszisztált delivery',
+        title: t('exp_proj4_title'),
+        year: '2025 — ' + t('present'),
+        role: t('exp_proj4_role'),
         commits: '~470',
-        description: 'Nagy, több-brandes szerkesztőségi platform (hír-, sport- és médiaportálok) fejlesztése, AI-asszisztáltan.',
+        description: t('exp_proj4_desc'),
         highlights: [
-            'WordPress téma- és plugin-fejlesztés PHP-ban (belső REST/admin API-hoz köthető egyedi pluginok)',
-            'Hírlevél-rendszer (feliratkozás, opt-in, Keycloak-integráció), site-config snapshotok, kvíz-admin',
-            'Lejátszási lista / player widgetek, VOD/AOD feedek normalizálása, mobilalkalmazás-promóciók, GTM/Gemius integráció',
-            'WCAG webakadálymentesítés iteratív megvalósítása: kontraszt, fókuszkezelés, ARIA, reszponzív javítások — élő határidős médiaprojektben',
+            t('exp_proj4_h1'),
+            t('exp_proj4_h2'),
+            t('exp_proj4_h3'),
+            t('exp_proj4_h4'),
         ],
         skills: ['WordPress', 'PHP', 'JavaScript', 'Keycloak', 'WCAG', 'GTM', 'Gemius']
     },
     {
-        title: 'Next.js / TypeScript rendszerek és prototípusok',
+        title: t('exp_proj5_title'),
         year: '2026',
-        role: 'Fejlesztő · AI-asszisztált',
+        role: t('exp_proj5_role'),
         commits: null,
-        description: '2026-os friss munka, teljes egészében AI-asszisztált fejlesztéssel.',
+        description: t('exp_proj5_desc'),
         highlights: [
-            'Next.js + TypeScript alkalmazások: ISR (Incremental Static Regeneration) és middleware megoldások, Keycloak-integráció, React Query, MUI',
-            'Nagyobb TypeScript-kódbázisok szállítása AI-augmentált munkafolyamatban',
+            t('exp_proj5_h1'),
+            t('exp_proj5_h2'),
         ],
         skills: ['Next.js', 'TypeScript', 'React', 'MUI', 'Keycloak', 'React Query', 'ISR']
     },
     {
-        title: 'Könyvtári kiszolgálópont',
-        year: '2022 — Jelen',
-        role: 'Fejlesztő',
+        title: t('exp_proj6_title'),
+        year: '2022 — ' + t('present'),
+        role: t('exp_proj6_role'),
         commits: null,
-        description: 'Asztali kliens és mobil alkalmazás könyvtári kiszolgálópontokhoz.',
+        description: t('exp_proj6_desc'),
         highlights: [
-            'Electron asztali kliens és React Native mobil (auto-update, ePub/PDF-olvasó, offline tárolás)',
+            t('exp_proj6_h1'),
         ],
         skills: ['Electron', 'React Native', 'ePub', 'PDF']
     },
     {
-        title: 'Egyéb eszközök és testreszabások',
+        title: t('exp_proj7_title'),
         year: '',
-        role: 'Fejlesztő',
+        role: t('exp_proj7_role'),
         commits: null,
         description: '',
         highlights: [
-            'Keycloak testreszabás',
-            'S3/PDF-feldolgozó és borítókép-vágó segédeszközök',
+            t('exp_proj7_h1'),
+            t('exp_proj7_h2'),
         ],
         skills: ['Keycloak', 'S3', 'MinIO', 'PDF']
     },
-]
+])
 </script>
 
 

@@ -1,12 +1,15 @@
-import AOS from "aos";
-import "aos/dist/aos.css";
-import { defineNuxtPlugin } from "nuxt/app";
+import AOS from "aos"
 
 export default defineNuxtPlugin((nuxtApp) => {
-  nuxtApp.hook("page:finish", () => {
+  nuxtApp.hook("app:mounted", () => {
     AOS.init({
       once: true,
       disable: () => window.innerWidth < 768,
-    });
-  });
-});
+    })
+  })
+
+  // Refresh AOS on page navigation instead of re-initializing to prevent memory leaks
+  nuxtApp.hook("page:finish", () => {
+    AOS.refresh()
+  })
+})

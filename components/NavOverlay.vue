@@ -1,14 +1,14 @@
 <template>
     <div>
         <!-- Floating Menu Toggle -->
-        <button type="button" class="menu-toggle" @click.stop.prevent="toggleMenu" :class="{ 'is-open': isOpen }">
+        <button type="button" class="menu-toggle" @click.stop.prevent="toggleMenu" :class="{ 'is-open': isOpen }" :aria-expanded="isOpen" aria-controls="nav-overlay" :aria-label="isOpen ? $t('close') : $t('menu')">
             <span class="menu-label">{{ isOpen ? $t('close') : $t('menu') }}</span>
-            <span class="menu-dot"></span>
+            <span class="menu-dot" aria-hidden="true"></span>
         </button>
 
         <!-- Fullscreen Overlay -->
         <Transition name="overlay-reveal">
-            <div v-if="isOpen" class="nav-overlay">
+            <div v-if="isOpen" id="nav-overlay" class="nav-overlay" role="dialog" aria-modal="true" aria-label="Navigation">
                 <div class="nav-overlay-inner">
                     <!-- Left: Navigation Links -->
                     <nav class="nav-links">
@@ -17,7 +17,7 @@
                             class="nav-link"
                             :style="{ transitionDelay: (i * 0.06) + 's' }"
                             @click="closeMenu">
-                            <span class="nav-number">0{{ i + 1 }}</span>
+                            <span class="nav-number">{{ String(i + 1).padStart(2, '0') }}</span>
                             <span class="nav-text">{{ $t(link.key) || link.label }}</span>
                         </NuxtLink>
                     </nav>
@@ -30,8 +30,8 @@
                             <button type="button" @click.stop="switchLang('en')" :class="{ active: locale === 'en' }" class="lang-btn">EN</button>
                         </div>
                         <div class="nav-socials">
-                            <a href="https://github.com/papandras" target="_blank" rel="noopener">GH</a>
-                            <a href="https://linkedin.com" target="_blank" rel="noopener">LI</a>
+                            <a href="https://github.com/papandras" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+                            <a href="https://www.linkedin.com/in/papandras" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">LI</a>
                         </div>
                     </div>
                 </div>
@@ -60,13 +60,28 @@ const navLinks = [
 
 const toggleMenu = () => {
     isOpen.value = !isOpen.value
-    document.body.style.overflow = isOpen.value ? 'hidden' : ''
+    document.body.classList.toggle('overflow-hidden', isOpen.value)
 }
 
 const closeMenu = () => {
     isOpen.value = false
-    document.body.style.overflow = ''
+    document.body.classList.remove('overflow-hidden')
 }
+
+const handleEscape = (e: KeyboardEvent) => {
+    if (e.key === 'Escape' && isOpen.value) {
+        closeMenu()
+    }
+}
+
+onMounted(() => {
+    document.addEventListener('keydown', handleEscape)
+})
+
+onUnmounted(() => {
+    document.removeEventListener('keydown', handleEscape)
+    document.body.classList.remove('overflow-hidden')
+})
 
 const switchLang = (lang: string) => {
     setLocale(lang)
@@ -93,7 +108,7 @@ const switchLang = (lang: string) => {
     text-transform: uppercase;
     padding: 0.8rem 1.2rem;
     mix-blend-mode: difference;
-    transition: all 0.4s var(--ease-out-expo);
+    transition: color 0.4s var(--ease-out-expo), mix-blend-mode 0.4s;
 }
 
 .menu-dot {
